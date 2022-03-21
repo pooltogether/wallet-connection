@@ -1,4 +1,4 @@
-import { BottomSheet } from '@pooltogether/react-components'
+import { Modal } from '@pooltogether/react-components'
 
 import React from 'react'
 import { WalletConnectionList } from './WalletConnectionList'
@@ -15,11 +15,14 @@ export const WalletConnectionModal: React.FC<WalletConnectionModalProps> = (prop
   const { isOpen, TosDisclaimer, closeModal } = props
 
   return (
-    <BottomSheet
+    <Modal
       label='wallet-connection-modal'
-      open={isOpen}
-      onDismiss={closeModal}
-      maxWidthClassName='max-w-md'
+      isOpen={isOpen}
+      closeModal={closeModal}
+      heightClassName='h-screen xs:h-auto'
+      widthClassName='w-screen xs:w-full'
+      maxWidthClassName='xs:max-w-md'
+      roundedClassName='rounded-none xs:rounded-xl'
     >
       <h4 className='mb-4'>Connect to a wallet</h4>
       <p className='mb-8'>{TosDisclaimer}</p>
@@ -32,6 +35,6 @@ export const WalletConnectionModal: React.FC<WalletConnectionModalProps> = (prop
       >
         {`What's a wallet?`}
       </a>
-    </BottomSheet>
+    </Modal>
   )
 }
