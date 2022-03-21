@@ -1,0 +1,11 @@
+<script>
+  setTimeout(cb, 1)
+  setInterval(cb, 100)
+
+  function cb() {
+    if (document.body) {
+      document.body.classList.add('bg-body')
+      document.body.classList.add('text-inverse')
+    }
+  }
+</script>

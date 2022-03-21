@@ -1,0 +1,127 @@
+{
+  "name": "@pooltogether/wallet-connection",
+  "description": "PoolTogether wallet connection logic, UI elements and utility hooks for sending and managing transactions.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "PoolTogether Inc.",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "react",
+    "library",
+    "components",
+    "web3",
+    "ethers",
+    "ethereum"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "reinstall": "rm -rf ./node_modules && yarn",
+    "start": "tsdx watch --onSuccess \"yalc push\"",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "module": "dist/wallet-connection.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/wallet-connection.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/wallet-connection.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "react-query": "^3.16.0",
+    "graphql": "^16.1.0",
+    "beautiful-react-hooks": "^1.0.2",
+    "@babel/core": "^7.17.7",
+    "@babel/preset-env": "^7.16.4",
+    "@pooltogether/react-components": "^1.7.3",
+    "@pooltogether/hooks": "^1.5.1",
+    "graphql-request": "^3.7.0",
+    "eth-revert-reason": "^1.0.3",
+    "graphql-tag": "^2.12.6",
+    "@pooltogether/etherplex": "^1.1.2",
+    "@pooltogether/evm-chains-extended": "^0.6.4-beta.1",
+    "@pooltogether/current-pool-data": "^3.7.2",
+    "@pooltogether/utilities": "^0.3.9",
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/addons": "^6.4.19",
+    "@storybook/addon-postcss": "^2.0.0",
+    "postcss": "^8.3.11",
+    "autoprefixer": "^10.4.0",
+    "@storybook/react": "^6.4.19",
+    "@types/react": "^17.0.40",
+    "@types/react-dom": "^17.0.13",
+    "babel-loader": "^8.2.3",
+    "classnames": "^2.3.1",
+    "ethers": "^5.4.6",
+    "feather-icons-react": "^0.4.1",
+    "framer-motion": "^4.1.17",
+    "husky": "^7.0.4",
+    "jotai": "^1.4.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2",
+    "react-spring-bottom-sheet": "^3.4.0",
+    "react-toastify": "^8.2.0",
+    "size-limit": "^7.0.8",
+    "tailwindcss": "^2.2.7",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.4",
+    "uuid": "^8.3.2",
+    "wagmi": "^0.2.20"
+  },
+  "peerDependencies": {
+    "react-query": "^3.16.0",
+    "graphql": "^16.1.0",
+    "beautiful-react-hooks": "^1.0.2",
+    "eth-revert-reason": "^1.0.3",
+    "graphql-tag": "^2.12.6",
+    "graphql-request": "^3.7.0",
+    "@pooltogether/react-components": "^1.7.3",
+    "@pooltogether/evm-chains-extended": "^0.6.4-beta.1",
+    "@pooltogether/current-pool-data": "^3.7.2",
+    "@pooltogether/etherplex": "^1.1.2",
+    "@pooltogether/hooks": "^1.5.1",
+    "@pooltogether/utilities": "^0.3.9",
+    "classnames": "^2.3.1",
+    "ethers": "^5.4.6",
+    "feather-icons-react": "^0.4.1",
+    "framer-motion": "^4.1.17",
+    "jotai": "^1.4.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-spring-bottom-sheet": "^3.4.0",
+    "react-toastify": "^8.2.0",
+    "tailwindcss": "^2.2.7",
+    "uuid": "^8.3.2",
+    "wagmi": "^0.2.20"
+  },
+  "dependencies": {
+    "@download/blockies": "^1.0.3"
+  }
+}
