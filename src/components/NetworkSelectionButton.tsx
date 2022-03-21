@@ -26,15 +26,12 @@ export const NetworkSelectionButton: React.FC<NetworkSelectionProps> = (props) =
   return (
     <>
       <button
-        className={classNames(
-          className,
-          'flex space-x-2 items-center hover:text-inverse transition-colors'
-        )}
+        className={classNames(className, 'flex space-x-2 items-center ')}
         onClick={() => setIsOpen(true)}
       >
         <NetworkIcon chainId={chainId} />
         <span
-          className='hidden xs:block font-bold'
+          className={`hidden xs:block font-bold hover:opacity-70 transition`}
           style={{ color: getChainColorByChainId(chainId) }}
         >
           {getChainNameByChainId(chainId)}

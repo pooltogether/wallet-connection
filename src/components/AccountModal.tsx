@@ -55,7 +55,7 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
             <BlockExplorerLink className='opacity-80' shorten address={address} chainId={chainId} />
           </div>
           <div className='space-x-2 opacity-80 flex items-center'>
-            <WalletIcon wallet={connector.name.toLowerCase()} sizeClassName='w-5 h-5' />
+            <WalletIcon wallet={connectorName?.toLowerCase()} sizeClassName='w-5 h-5' />
             <span>{connectorName}</span>
           </div>
           <div className='space-x-2 opacity-80 flex items-center'>
