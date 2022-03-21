@@ -6,8 +6,8 @@ import { Chain, useConnect } from 'wagmi'
 import { useWalletChainId } from '../hooks/useWalletChainId'
 import { NetworkSelectionModal } from './NetworkSelectionModal'
 import { i18nTranslate } from '../interfaces'
-import { getChainNameByChainId } from 'src/utilities/getChainNameByChainId'
-import { getChainColorByChainId } from 'src/utilities/getChainColorByChainId'
+import { getChainNameByChainId } from '../utilities/getChainNameByChainId'
+import { getChainColorByChainId } from '../utilities/getChainColorByChainId'
 
 export interface NetworkSelectionProps {
   chains: Chain[]
@@ -26,7 +26,10 @@ export const NetworkSelectionButton: React.FC<NetworkSelectionProps> = (props) =
   return (
     <>
       <button
-        className={classNames(className, 'flex space-x-2 items-center')}
+        className={classNames(
+          className,
+          'flex space-x-2 items-center hover:text-inverse transition-colors'
+        )}
         onClick={() => setIsOpen(true)}
       >
         <NetworkIcon chainId={chainId} />

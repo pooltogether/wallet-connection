@@ -5,7 +5,9 @@ import {
   SquareButtonTheme,
   BlockExplorerLink,
   SquareButtonSize,
-  ThemedClipSpinner
+  ThemedClipSpinner,
+  NetworkIcon,
+  WalletIcon
 } from '@pooltogether/react-components'
 
 import React from 'react'
@@ -47,13 +49,17 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
     >
       <h4 className='mb-2'>Account</h4>
       <div className='grid grid-cols-2'>
-        <div className='overflow-ellipsis overflow-hidden flex flex-col space-y-1'>
+        <div className='flex flex-col space-y-1'>
           <div className='flex space-x-2 items-center font-bold'>
             <AccountAvatar address={address} />
             <BlockExplorerLink className='opacity-80' shorten address={address} chainId={chainId} />
           </div>
-          <span className='opacity-80'>{connectorName}</span>
-          <div className='space-x-1 opacity-80'>
+          <div className='space-x-2 opacity-80 flex items-center'>
+            <WalletIcon wallet={connector.name.toLowerCase()} sizeClassName='w-5 h-5' />
+            <span>{connectorName}</span>
+          </div>
+          <div className='space-x-2 opacity-80 flex items-center'>
+            <NetworkIcon chainId={chainId} sizeClassName='w-5 h-5' />
             <span>{getChainNameByChainId(chainId)}</span>
             <span className='text-xxs opacity-80'>{`(${chainId})`}</span>
           </div>

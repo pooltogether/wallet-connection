@@ -104,7 +104,7 @@ const NetworkSelectionButton: React.FC<NetworkSelectionButtonProps> = (props) =>
         )}
         disabled={pending}
       >
-        <NetworkIcon chainId={id} className='mx-1' sizeClassName='w-5 h-5 mr-2' />
+        <NetworkIcon chainId={id} className='mx-1' sizeClassName='w-5 h-5' />
         <span className='capitalize leading-none tracking-wider font-bold text-lg'>{name}</span>
         {pending && <ThemedClipSpinner sizeClassName='w-5 h-5 ml-2' />}
       </button>

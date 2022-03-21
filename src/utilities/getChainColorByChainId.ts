@@ -1,4 +1,4 @@
-import { CHAIN_ID } from 'src/constants'
+import { CHAIN_ID } from '../constants'
 
 export const getChainColorByChainId = (chainId: number) => {
   switch (chainId) {

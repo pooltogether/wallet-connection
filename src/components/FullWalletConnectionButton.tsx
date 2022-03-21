@@ -21,12 +21,21 @@ export interface FullWalletConnectionProps {
   className?: string
   buttonClassName?: string
   iconSizeClassName?: string
+  pendingIconSizeClassName?: string
   TosDisclaimer: React.ReactNode
   t?: i18nTranslate
 }
 
 export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (props) => {
-  const { chains, className, buttonClassName, iconSizeClassName, t, TosDisclaimer } = props
+  const {
+    chains,
+    className,
+    buttonClassName,
+    iconSizeClassName,
+    pendingIconSizeClassName,
+    t,
+    TosDisclaimer
+  } = props
   const [{ data: account }, disconnect] = useAccount()
   const [{ data: connectionData }] = useConnect()
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false)
@@ -55,7 +64,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
           'flex text-pt-teal hover:text-inverse transition-colors font-semibold items-center space-x-2'
         )}
       >
-        <ThemedClipSpinner sizeClassName={iconSizeClassName} />
+        <ThemedClipSpinner sizeClassName={pendingIconSizeClassName} />
         <span>{`${pendingTransactions.length} pending`}</span>
       </button>
     )
@@ -103,5 +112,6 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
 
 FullWalletConnectionButton.defaultProps = {
   className: 'flex space-x-4 items-center',
-  iconSizeClassName: 'w-5 h-5'
+  iconSizeClassName: 'w-5 h-5',
+  pendingIconSizeClassName: 'w-4 h-4'
 }
