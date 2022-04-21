@@ -6,5 +6,5 @@ export const AccountName: React.FC<{
 }> = (props) => {
   const { address } = props
   const { data: ensName } = useEnsName(address)
-  return <>{ensName || address.slice(0, 6) + '...'}</>
+  return <>{ensName || address?.slice(0, 6) + '...'}</>
 }
