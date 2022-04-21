@@ -20,6 +20,8 @@ yarn add @pooltogether/wallet-connection
 
 This means you **must** do some setup in your app. Place the following at the highest point inside your react app as possible:
 
+>  `@pooltogether/wallet-connection` assumes 1 instance `FullWalletConnectionButton`. This component contains the modal for wallet connection and account modal. For all other "Connect wallet" buttons use the function returned by `useConnectWallet`.
+
 ```ts
 import { Provider as WagmiProvider } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
@@ -28,6 +30,11 @@ import { WalletLinkConnector } from 'wagmi/connectors/walletLink'
 import { Provider as JotaiProvider } from 'jotai'
 import { ThemeContext, ThemeContextProvider } from '@pooltogether/react-components'
 import { ToastContainer } from 'react-toastify'
+
+import { initProviderApiKeys, FullWalletConnectionButton } from '@pooltogether/wallet-connection'
+
+// Initialize provider API keys for the best experience
+initProviderApiKeys(providerApiKeys)
 
 // Styles
 import 'react-toastify/dist/ReactToastify.css'
@@ -71,6 +78,7 @@ const PoolTogetherWalletProviders = (props) => (
     <JotaiProvider>
       <ThemeContextProvider>
         <ThemedToastContainer />
+        <FullWalletConnectionButton chains={chains} TosDisclaimer='I agree to TOS' />
         {props.children}
       </ThemeContextProvider>
     </JotaiProvider>

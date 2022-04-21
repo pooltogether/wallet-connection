@@ -7,6 +7,11 @@ import { Transaction } from './interfaces'
 /**
  * Transaction we can do something with
  */
+export const isWalletConnectionModalOpenAtom = atom<boolean>(false)
+
+/**
+ * Transaction we can do something with
+ */
 export const transactionsAtom = atomWithStorage<Transaction[]>('pooltogether-transactions', [])
 
 /**
@@ -16,7 +21,7 @@ export const transactionsAtom = atomWithStorage<Transaction[]>('pooltogether-tra
  */
 export const createTransactionsAtom = atom<
   null,
-  { id: string; transactionName: string; chainId: number; usersAddress: string }
+  { id: string; name: string; chainId: number; usersAddress: string }
 >(null, (get, set, _transaction) => {
   let transactions = [...get(transactionsAtom)]
   const transaction: Transaction = {
@@ -55,5 +60,16 @@ export const updateTransactionsAtom = atom<
     response: response || transactions[index].response,
     receipt: receipt || transactions[index].receipt
   }
+  set(transactionsAtom, transactions)
+})
+
+/**
+ * Write only.
+ * Removes a transactions from the storage.
+ */
+export const deleteTransactionsAtom = atom<null, string>(null, (get, set, id) => {
+  const transactions = [...get(transactionsAtom)]
+  const index = transactions.findIndex((transaction) => transaction.id === id)
+  transactions.splice(index, 1)
   set(transactionsAtom, transactions)
 })

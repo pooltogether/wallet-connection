@@ -5,6 +5,7 @@ import {
   ThemedClipSpinner
 } from '@pooltogether/react-components'
 import React, { useState } from 'react'
+import { useAtom } from 'jotai'
 
 import { AccountModal } from './AccountModal'
 import classNames from 'classnames'
@@ -15,6 +16,7 @@ import { AccountName } from './AccountName'
 import { AccountAvatar } from './AccountAvatar'
 import { NetworkSelectionButton } from './NetworkSelectionButton'
 import { WalletConnectionModal } from './WalletConnectionModal'
+import { isWalletConnectionModalOpenAtom } from '../atoms'
 
 export interface FullWalletConnectionProps {
   chains: Chain[]
@@ -26,6 +28,11 @@ export interface FullWalletConnectionProps {
   t?: i18nTranslate
 }
 
+/**
+ * NOTE: Only render one per app.
+ * @param props
+ * @returns
+ */
 export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (props) => {
   const {
     chains,
@@ -39,7 +46,9 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
   const [{ data: account }, disconnect] = useAccount()
   const [{ data: connectionData }] = useConnect()
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false)
-  const [isWalletConnectionModalOpen, setIsWalletConnectionModalOpen] = useState(false)
+  const [isWalletConnectionModalOpen, setIsWalletConnectionModalOpen] = useAtom(
+    isWalletConnectionModalOpenAtom
+  )
   const pendingTransactions = useUsersPendingTransactions(account?.address)
   const connected = connectionData?.connected
 

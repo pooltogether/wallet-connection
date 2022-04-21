@@ -1,28 +1,27 @@
 import { useUpdateAtom } from 'jotai/utils'
 import { createTransactionsAtom, updateTransactionsAtom } from '../atoms'
-import { TransactionCallbacks } from '../interfaces'
+import { SendTransactionOptions, TransactionCallbacks } from '../interfaces'
 import { TransactionReceipt, TransactionResponse } from '@ethersproject/providers'
 import { toast } from 'react-toastify'
 import { v4 as uuid } from 'uuid'
 import { TransactionState, TransactionStatus } from '../constants'
+import { useUsersAddress } from './useUsersAddress'
+import { useWalletChainId } from './useWalletChainId'
 
 /**
- * @param chainId
- * @param usersAddress
+ * @param log optional error logger
  * @returns
  */
-export const useSendTransaction = (
-  chainId: number,
-  usersAddress: string,
-  log?: (message: string) => void
-) => {
+export const useSendTransaction = (log?: (message: string) => void) => {
+  const usersAddress = useUsersAddress()
+  const chainId = useWalletChainId()
   const createTransaction = useUpdateAtom(createTransactionsAtom)
   const updateTransaction = useUpdateAtom(updateTransactionsAtom)
 
   /**
    * Submits the transaction, updates state and executes callbacks.
    * @param id
-   * @param transactionName
+   * @param name
    * @param chainId
    * @param usersAddress
    * @param callTransaction
@@ -30,7 +29,7 @@ export const useSendTransaction = (
    */
   const sendTransaction = async (
     id: string,
-    transactionName: string,
+    name: string,
     chainId: number,
     callTransaction: () => Promise<TransactionResponse>,
     callbacks?: TransactionCallbacks
@@ -39,10 +38,10 @@ export const useSendTransaction = (
     let receipt: TransactionReceipt
 
     try {
-      callbacks?.onSent?.(id)
+      callbacks?.onSentToWallet?.(id)
       const responsePromise = callTransaction()
       toast.promise(responsePromise, {
-        pending: `${transactionName} confirmation is pending`
+        pending: `${name} confirmation is pending`
       })
       response = await responsePromise
       // Chain id may be set to 0 if EIP-155 is disabled and legacy signing is used
@@ -52,14 +51,14 @@ export const useSendTransaction = (
       }
       // Transaction was confirmed in users wallet
       updateTransaction({ id, response, status: TransactionStatus.pendingBlockchainConfirmation })
-      callbacks?.onConfirmed?.(id)
+      callbacks?.onConfirmedByUser?.(id)
 
       const receiptPromise = response.wait()
       toast.promise(receiptPromise, {
         // TODO: We could make pending & succeded toasts include the tx hash & a link to etherscan.
-        pending: `${transactionName} is pending`,
-        success: `${transactionName} has completed`,
-        error: `${transactionName} was rejected`
+        pending: `${name} is pending`,
+        success: `${name} has completed`,
+        error: `${name} was rejected`
       })
       receipt = await receiptPromise
 
@@ -85,7 +84,7 @@ export const useSendTransaction = (
           status: TransactionStatus.cancelled,
           state: TransactionState.complete
         })
-        toast.error(`${transactionName} confirmation was cancelled`)
+        toast.error(`${name} confirmation was cancelled`)
       } else if (e?.error?.message) {
         const errorDetails = getErrorDetails(e.error.message)
 
@@ -112,14 +111,11 @@ export const useSendTransaction = (
     }
   }
 
-  return (
-    transactionName: string,
-    callTransaction: () => Promise<TransactionResponse>,
-    callbacks?: TransactionCallbacks
-  ) => {
+  return (options: SendTransactionOptions) => {
+    const { name, callTransaction, callbacks } = options
     const id: string = uuid()
-    createTransaction({ id, transactionName, chainId, usersAddress })
-    sendTransaction(id, transactionName, chainId, callTransaction, callbacks)
+    createTransaction({ id, name, chainId, usersAddress })
+    sendTransaction(id, name, chainId, callTransaction, callbacks)
     return id
   }
 }

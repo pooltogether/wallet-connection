@@ -11,7 +11,7 @@ export interface ProviderApiKeys {
 
 export interface Transaction {
   id: string
-  transactionName: string
+  name: string
   chainId: number
   usersAddress: string
   status: TransactionStatus
@@ -22,12 +22,17 @@ export interface Transaction {
 }
 
 export interface TransactionCallbacks {
-  // TODO: refetch timeouts
   refetch?: (id: string) => void
-  onConfirmed?: (id: string) => void
+  onConfirmedByUser?: (id: string) => void
   onSuccess?: (id: string) => void
-  onSent?: (id: string) => void
+  onSentToWallet?: (id: string) => void
   onCancelled?: (id: string) => void
   onComplete?: (id: string) => void
   onError?: (id: string) => void
+}
+
+export interface SendTransactionOptions {
+  name: string
+  callTransaction: () => Promise<TransactionResponse>
+  callbacks?: TransactionCallbacks
 }

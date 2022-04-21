@@ -17,6 +17,9 @@ import { getChainNameByChainId } from '../utilities/getChainNameByChainId'
 import { useUsersTransactions } from '../hooks/useUsersTransactions'
 import { TransactionState, TransactionStatus } from '../constants'
 import { AccountAvatar } from './AccountAvatar'
+import { useUpdateAtom } from 'jotai/utils'
+import { transactionsAtom } from '../atoms'
+import { AccountName } from './AccountName'
 
 interface AccountModalProps {
   isOpen: boolean
@@ -39,6 +42,7 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
   const chainId = network.chain?.id
   const transactions = useUsersTransactions(address)
   const filteredTransactions = transactions?.slice(transactions.length - 5).reverse()
+  const setTransactions = useUpdateAtom(transactionsAtom)
 
   return (
     <BottomSheet
@@ -49,17 +53,29 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
     >
       <h4 className='mb-2'>Account</h4>
       <div className='grid grid-cols-2'>
-        <div className='flex flex-col space-y-1'>
+        <div className='flex flex-col space-y-2'>
           <div className='flex space-x-2 items-center font-bold'>
-            <AccountAvatar address={address} />
-            <BlockExplorerLink className='opacity-80' shorten address={address} chainId={chainId} />
+            <AccountAvatar address={address} sizeClassName='w-8 h-8' />
+            <BlockExplorerLink
+              className='opacity-80'
+              shorten
+              address={address}
+              chainId={chainId}
+              copyable
+            >
+              <AccountName address={address} />
+            </BlockExplorerLink>
           </div>
           <div className='space-x-2 opacity-80 flex items-center'>
-            <WalletIcon wallet={connectorName?.toLowerCase()} sizeClassName='w-5 h-5' />
+            <WalletIcon
+              wallet={connectorName?.toLowerCase()}
+              sizeClassName='w-6 h-6'
+              className='mx-1'
+            />
             <span>{connectorName}</span>
           </div>
           <div className='space-x-2 opacity-80 flex items-center'>
-            <NetworkIcon chainId={chainId} sizeClassName='w-5 h-5' />
+            <NetworkIcon chainId={chainId} sizeClassName='w-6 h-6' className='mx-1' />
             <span>{getChainNameByChainId(chainId)}</span>
             <span className='text-xxs opacity-80'>{`(${chainId})`}</span>
           </div>
@@ -85,7 +101,14 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
       </div>
       <hr />
       {/* TODO: Clear transactions button just in case */}
-      <h5 className='mb-2'>Past Transactions</h5>
+      <div className='flex justify-between items-center'>
+        <h5 className='mb-2'>Past Transactions</h5>
+        {filteredTransactions.length > 0 && (
+          <button onClick={() => setTransactions([])} className='opacity-50 text-xxs leading-none'>
+            Clear transactions
+          </button>
+        )}
+      </div>
       <ul className='space-y-1'>
         {filteredTransactions.map((transaction) => (
           <TransactionItem key={transaction.id} transaction={transaction} />
@@ -105,9 +128,13 @@ const TransactionItem: React.FC<{ transaction: Transaction }> = (props) => {
   return (
     <li key={transaction.id} className='flex space-x-2 items-center'>
       <TransactionStatusIcon transaction={transaction} />
-      <BlockExplorerLink chainId={transaction.chainId} txHash={transaction.response.hash}>
-        {transaction.transactionName}
-      </BlockExplorerLink>
+      {!!transaction.response ? (
+        <BlockExplorerLink chainId={transaction.chainId} txHash={transaction.response.hash}>
+          {transaction.name}
+        </BlockExplorerLink>
+      ) : (
+        <span>{transaction.name}</span>
+      )}
     </li>
   )
 }

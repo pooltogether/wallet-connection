@@ -1,5 +1,5 @@
 import { getReadProvider } from './getReadProvider'
-import { Provider } from '@ethersproject/abstract-provider'
+import { BaseProvider } from '@ethersproject/providers'
 import { ProviderApiKeys } from '../interfaces'
 
 /**
@@ -11,7 +11,7 @@ import { ProviderApiKeys } from '../interfaces'
 export const getReadProviders = (
   chainIds: number[],
   apiKeys?: ProviderApiKeys
-): { [chainId: number]: Provider } =>
+): { [chainId: number]: BaseProvider } =>
   chainIds.reduce((readProviders, chainId) => {
     readProviders[chainId] = getReadProvider(chainId, apiKeys)
     return readProviders

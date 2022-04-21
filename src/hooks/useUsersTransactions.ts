@@ -9,6 +9,6 @@ import { transactionsAtom } from '../atoms'
 export const useUsersTransactions = (usersAddress: string) => {
   const [transactions] = useAtom(transactionsAtom)
   return transactions.filter(
-    (transaction) => transaction.usersAddress === usersAddress && transaction.response?.hash
+    (transaction) => transaction.usersAddress === usersAddress && !!transaction.response?.hash
   )
 }

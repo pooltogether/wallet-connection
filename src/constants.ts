@@ -1,4 +1,14 @@
 import { allChains, Chain } from 'wagmi'
+import { ProviderApiKeys } from './interfaces'
+
+/**
+ * Global API keys, initialized through initProviderApiKeys
+ */
+export const RPC_API_KEYS: ProviderApiKeys = {
+  alchemy: undefined,
+  etherscan: undefined,
+  infura: undefined
+}
 
 /**
  * Constant for chain ids
@@ -83,6 +93,21 @@ const CUSTOM_CHAINS: Chain[] = [
     rpcUrls: ['https://forno.celo.org'],
     blockExplorers: [{ name: 'Celo Explorer', url: 'https://explorer.celo.org/' }],
     testnet: false
+  },
+  {
+    id: 56,
+    name: 'Binance Smart Chain',
+    nativeCurrency: {
+      decimals: 18,
+      name: 'Binance Chain Native Token',
+      symbol: 'BNB'
+    },
+    rpcUrls: [
+      'https://bsc-dataseed.binance.org/',
+      'https://bsc-dataseed1.defibit.io/',
+      'https://bsc-dataseed1.ninicoin.io/'
+    ],
+    blockExplorers: [{ name: 'Bscscan', url: 'https://bscscan.com' }]
   }
 ]
 
