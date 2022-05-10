@@ -25,21 +25,21 @@ interface AccountModalProps {
   isOpen: boolean
   TosDisclaimer: React.ReactNode
   account: {
-    address: string
-    connector: Connector
+    address?: string
+    connector?: Connector
   }
-  disconnect: () => void
+  disconnect: any
   closeModal: () => void
   t?: i18nTranslate
 }
 
 export const AccountModal: React.FC<AccountModalProps> = (props) => {
   const { account, isOpen, disconnect, closeModal } = props
-  const [{ data: network }] = useNetwork()
+  const { activeChain } = useNetwork()
   const address = account?.address
   const connector = account?.connector
   const connectorName = connector?.name
-  const chainId = network.chain?.id
+  const chainId = activeChain?.id
   const transactions = useUsersTransactions(address)
   const filteredTransactions = transactions?.slice(transactions.length - 5).reverse()
   const setTransactions = useUpdateAtom(transactionsAtom)

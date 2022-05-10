@@ -16,7 +16,7 @@ interface NetworkSelectionModalProps {
 
 export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (props) => {
   const { chains, isOpen, closeModal, t } = props
-  const [{ data: network }, _switchNetwork] = useNetwork()
+  const { activeChain, switchNetwork: _switchNetwork } = useNetwork()
   const walletChainId = useWalletChainId()
   const [switchingToNetwork, setSwitchingToNetwork] = useState<number>()
   const [errorMessage, setErrorMessage] = useState<string>()
@@ -26,12 +26,7 @@ export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (prop
     if (walletChainId !== chainId) {
       try {
         setSwitchingToNetwork(chainId)
-        const { error } = await _switchNetwork(chainId)
-        if (error) {
-          setErrorMessage(`Error switching to ${getChainNameByChainId(chainId)}`)
-          setSwitchingToNetwork(undefined)
-          return
-        }
+        await _switchNetwork(chainId)
       } catch (e) {
         console.error(e)
         setErrorMessage(`Error switching to ${getChainNameByChainId(chainId)}`)
@@ -61,7 +56,7 @@ export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (prop
             chain={chain}
             onClick={() => switchNetwork(chain.id)}
             pending={switchingToNetwork === chain.id}
-            selected={network.chain.id === chain.id}
+            selected={activeChain.id === chain.id}
           />
         ))}
       </ul>
@@ -69,8 +64,8 @@ export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (prop
         {errorMessage && <p className='text-pt-red-light'>{errorMessage}</p>}
         <p className='text-xxxs'>
           {t?.('currentlyConnectedTo') || 'Currently connected to'}
-          <b className={classNames('ml-1', { 'text-pt-red-light': network.chain.unsupported })}>
-            {network.chain.name || getChainNameByChainId(network.chain.id)}
+          <b className={classNames('ml-1', { 'text-pt-red-light': activeChain.unsupported })}>
+            {activeChain.name || getChainNameByChainId(activeChain.id)}
           </b>
         </p>
       </div>

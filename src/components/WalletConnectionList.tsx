@@ -7,17 +7,14 @@ export const WalletConnectionList: React.FC<{ className?: string; closeModal: ()
   props
 ) => {
   const { className, closeModal } = props
-  const [{ data }, connect] = useConnect()
+  const { connectors, connect } = useConnect()
   const [pendingConnector, setPendingConnector] = useState<Connector>()
-  const connectors = data?.connectors
 
   const connectWallet = async (connector: Connector) => {
     setPendingConnector(connector)
     try {
-      const { error } = await connect(connector)
-      if (!error) {
-        closeModal()
-      }
+      await connect(connector)
+      closeModal()
     } catch (e) {
       console.error('Error connecting to wallet')
       return

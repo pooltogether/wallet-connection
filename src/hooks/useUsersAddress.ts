@@ -6,6 +6,6 @@ import { useAccount } from 'wagmi'
  * @returns the address of the connected wallet
  */
 export const useUsersAddress = () => {
-  const [{ data }] = useAccount()
+  const { data } = useAccount()
   return data ? getAddress(data.address) : null
 }

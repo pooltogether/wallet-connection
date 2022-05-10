@@ -17,11 +17,11 @@ export interface NetworkSelectionProps {
 
 export const NetworkSelectionButton: React.FC<NetworkSelectionProps> = (props) => {
   const { chains, className, t } = props
-  const [{ data }] = useConnect()
+  const { activeConnector } = useConnect()
   const chainId = useWalletChainId()
   const [isOpen, setIsOpen] = useState(false)
 
-  if (!data.connected || !data.connector) return null
+  if (!Boolean(activeConnector)) return null
 
   return (
     <>
