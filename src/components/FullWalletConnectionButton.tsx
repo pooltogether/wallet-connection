@@ -9,7 +9,7 @@ import { useAtom } from 'jotai'
 
 import { AccountModal } from './AccountModal'
 import classNames from 'classnames'
-import { Chain, useAccount, useConnect, useDisconnect } from 'wagmi'
+import { Chain, useAccount, useConnect } from 'wagmi'
 import { i18nTranslate } from '../interfaces'
 import { useUsersPendingTransactions } from '../hooks/useUsersPendingTransactions'
 import { AccountName } from './AccountName'
@@ -44,14 +44,13 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
     TosDisclaimer
   } = props
   const { data: account } = useAccount()
-  const { disconnect } = useDisconnect()
-  const { activeConnector: connectionData } = useConnect()
+  const { activeConnector } = useConnect()
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false)
   const [isWalletConnectionModalOpen, setIsWalletConnectionModalOpen] = useAtom(
     isWalletConnectionModalOpenAtom
   )
   const pendingTransactions = useUsersPendingTransactions(account?.address)
-  const connected = Boolean(connectionData)
+  const connected = !!activeConnector
 
   let networkButton: React.ReactNode
   let button: React.ReactNode = (
@@ -78,7 +77,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         <span>{`${pendingTransactions.length} pending`}</span>
       </button>
     )
-  } else if (connected && account) {
+  } else if (connected && !!account) {
     networkButton = <NetworkSelectionButton chains={chains} />
     button = (
       <button
@@ -107,8 +106,6 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         closeModal={() => setIsAccountModalOpen(false)}
         isOpen={isAccountModalOpen}
         TosDisclaimer={TosDisclaimer}
-        account={account}
-        disconnect={disconnect}
       />
       <WalletConnectionModal
         t={t}

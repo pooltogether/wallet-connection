@@ -3,7 +3,7 @@ import { useWalletChainId } from '../hooks/useWalletChainId'
 import { BottomSheet, NetworkIcon, ThemedClipSpinner } from '@pooltogether/react-components'
 import classNames from 'classnames'
 
-import { Chain, useNetwork } from 'wagmi'
+import { Chain, useConnect, useNetwork } from 'wagmi'
 import { getChainNameByChainId } from '../utilities/getChainNameByChainId'
 import { i18nTranslate } from '@pooltogether/react-components/dist/types'
 
@@ -20,6 +20,7 @@ export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (prop
   const walletChainId = useWalletChainId()
   const [switchingToNetwork, setSwitchingToNetwork] = useState<number>()
   const [errorMessage, setErrorMessage] = useState<string>()
+  const { activeConnector } = useConnect()
 
   const switchNetwork = async (chainId: number) => {
     setErrorMessage(undefined)
@@ -35,6 +36,8 @@ export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (prop
     setSwitchingToNetwork(undefined)
     closeModal()
   }
+
+  if (!activeConnector) return null
 
   return (
     <BottomSheet

@@ -7,5 +7,5 @@ import { useAccount } from 'wagmi'
  */
 export const useUsersAddress = () => {
   const { data } = useAccount()
-  return data ? getAddress(data.address) : null
+  return !!data ? getAddress(data.address) : null
 }

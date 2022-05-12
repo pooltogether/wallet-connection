@@ -116,6 +116,37 @@ const CUSTOM_CHAINS: Chain[] = [
     },
     // @ts-ignore
     blockExplorers: { bscscan: { name: 'Bscscan', url: 'https://bscscan.com' } }
+  },
+  {
+    id: 43114,
+    name: 'Avalanche Mainnet',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+      decimals: 18
+    },
+    // @ts-ignore
+    rpcUrls: { default: 'https://api.avax.network/ext/bc/C/rpc' },
+    // @ts-ignore
+    blockExplorers: { snowtrace: { name: 'SnowTrace', url: 'https://snowtrace.io' } },
+    testnet: false
+  },
+  {
+    id: 43113,
+    name: 'Avalanche Fuji Testnet',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+      decimals: 18
+    },
+    rpcUrls: {
+      default: 'https://api.avax-test.network/ext/bc/C/rpc'
+    },
+    // @ts-ignore
+    blockExplorers: {
+      default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
+    },
+    testnet: true
   }
 ]
 

@@ -21,7 +21,7 @@ export const NetworkSelectionButton: React.FC<NetworkSelectionProps> = (props) =
   const chainId = useWalletChainId()
   const [isOpen, setIsOpen] = useState(false)
 
-  if (!Boolean(activeConnector)) return null
+  if (!activeConnector) return null
 
   return (
     <>
