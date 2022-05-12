@@ -79,19 +79,25 @@ const CUSTOM_CHAINS: Chain[] = [
     id: 44787,
     name: 'Celo Alfajores Testnet',
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
-    rpcUrls: [
-      'https://alfajores-forno.celo-testnet.org',
-      'wss://alfajores-forno.celo-testnet.org/ws'
-    ],
-    blockExplorers: [{ name: 'BlockScout', url: 'https://alfajores-blockscout.celo-testnet.org/' }],
+    // @ts-ignore
+    rpcUrls: {
+      celohttps: 'https://alfajores-forno.celo-testnet.org',
+      celowss: 'wss://alfajores-forno.celo-testnet.org/ws'
+    },
+    // @ts-ignore
+    blockExplorers: {
+      blockScout: { name: 'BlockScout', url: 'https://alfajores-blockscout.celo-testnet.org/' }
+    },
     testnet: true
   },
   {
     id: 42220,
     name: 'Celo',
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
-    rpcUrls: ['https://forno.celo.org'],
-    blockExplorers: [{ name: 'Celo Explorer', url: 'https://explorer.celo.org/' }],
+    // @ts-ignore
+    rpcUrls: { forno: 'https://forno.celo.org' },
+    // @ts-ignore
+    blockExplorers: { celo: { name: 'Celo Explorer', url: 'https://explorer.celo.org/' } },
     testnet: false
   },
   {
@@ -102,12 +108,45 @@ const CUSTOM_CHAINS: Chain[] = [
       name: 'Binance Chain Native Token',
       symbol: 'BNB'
     },
-    rpcUrls: [
-      'https://bsc-dataseed.binance.org/',
-      'https://bsc-dataseed1.defibit.io/',
-      'https://bsc-dataseed1.ninicoin.io/'
-    ],
-    blockExplorers: [{ name: 'Bscscan', url: 'https://bscscan.com' }]
+    // @ts-ignore
+    rpcUrls: {
+      bsc1: 'https://bsc-dataseed.binance.org/',
+      bsc2: 'https://bsc-dataseed1.defibit.io/',
+      bsc3: 'https://bsc-dataseed1.ninicoin.io/'
+    },
+    // @ts-ignore
+    blockExplorers: { bscscan: { name: 'Bscscan', url: 'https://bscscan.com' } }
+  },
+  {
+    id: 43114,
+    name: 'Avalanche Mainnet',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+      decimals: 18
+    },
+    // @ts-ignore
+    rpcUrls: { default: 'https://api.avax.network/ext/bc/C/rpc' },
+    // @ts-ignore
+    blockExplorers: { snowtrace: { name: 'SnowTrace', url: 'https://snowtrace.io' } },
+    testnet: false
+  },
+  {
+    id: 43113,
+    name: 'Avalanche Fuji Testnet',
+    nativeCurrency: {
+      name: 'Avalanche',
+      symbol: 'AVAX',
+      decimals: 18
+    },
+    rpcUrls: {
+      default: 'https://api.avax-test.network/ext/bc/C/rpc'
+    },
+    // @ts-ignore
+    blockExplorers: {
+      default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
+    },
+    testnet: true
   }
 ]
 
@@ -130,7 +169,7 @@ const CHAIN_NAME_OVERRIDE: {
  *
  */
 const CHAIN_RPC_OVERRIDES: {
-  [chainId: number]: string[]
+  [chainId: number]: { [key: string]: string }
 } = Object.freeze({})
 
 /**
@@ -149,7 +188,8 @@ const editChainName = (chain: Chain) => {
  */
 const editRpcUrl = (chain: Chain) => {
   const overrides = CHAIN_RPC_OVERRIDES[chain.id]
-  if (overrides) chain.rpcUrls = [...overrides, ...chain.rpcUrls]
+  //@ts-ignore
+  if (overrides) chain.rpcUrls = { ...overrides, ...chain.rpcUrls }
   return chain
 }
 

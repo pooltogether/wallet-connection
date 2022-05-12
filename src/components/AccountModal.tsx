@@ -9,9 +9,8 @@ import {
   NetworkIcon,
   WalletIcon
 } from '@pooltogether/react-components'
-
 import React from 'react'
-import { Connector, useNetwork } from 'wagmi'
+import { useAccount, useDisconnect, useNetwork } from 'wagmi'
 import { i18nTranslate, Transaction } from '../interfaces'
 import { getChainNameByChainId } from '../utilities/getChainNameByChainId'
 import { useUsersTransactions } from '../hooks/useUsersTransactions'
@@ -24,25 +23,35 @@ import { AccountName } from './AccountName'
 interface AccountModalProps {
   isOpen: boolean
   TosDisclaimer: React.ReactNode
-  account: {
-    address: string
-    connector: Connector
-  }
-  disconnect: () => void
   closeModal: () => void
   t?: i18nTranslate
 }
 
 export const AccountModal: React.FC<AccountModalProps> = (props) => {
-  const { account, isOpen, disconnect, closeModal } = props
-  const [{ data: network }] = useNetwork()
+  const { isOpen, closeModal } = props
+  const { data: account } = useAccount()
+  const { disconnect } = useDisconnect()
+  const { activeChain } = useNetwork()
   const address = account?.address
   const connector = account?.connector
   const connectorName = connector?.name
-  const chainId = network.chain?.id
+  const chainId = activeChain?.id
   const transactions = useUsersTransactions(address)
   const filteredTransactions = transactions?.slice(transactions.length - 5).reverse()
   const setTransactions = useUpdateAtom(transactionsAtom)
+
+  if (!account) {
+    return (
+      <BottomSheet
+        label='account-modal'
+        open={isOpen}
+        onDismiss={closeModal}
+        maxWidthClassName='max-w-md'
+      >
+        <div />
+      </BottomSheet>
+    )
+  }
 
   return (
     <BottomSheet
@@ -86,8 +95,8 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
             size={SquareButtonSize.sm}
             onClick={() => {
               try {
-                disconnect()
                 closeModal()
+                disconnect()
               } catch (e) {
                 console.error(e.message)
                 window.location.reload()

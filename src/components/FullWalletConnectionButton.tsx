@@ -43,14 +43,14 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
     t,
     TosDisclaimer
   } = props
-  const [{ data: account }, disconnect] = useAccount()
-  const [{ data: connectionData }] = useConnect()
+  const { data: account } = useAccount()
+  const { activeConnector } = useConnect()
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false)
   const [isWalletConnectionModalOpen, setIsWalletConnectionModalOpen] = useAtom(
     isWalletConnectionModalOpenAtom
   )
   const pendingTransactions = useUsersPendingTransactions(account?.address)
-  const connected = connectionData?.connected
+  const connected = !!activeConnector
 
   let networkButton: React.ReactNode
   let button: React.ReactNode = (
@@ -77,7 +77,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         <span>{`${pendingTransactions.length} pending`}</span>
       </button>
     )
-  } else if (connected && account) {
+  } else if (connected && !!account) {
     networkButton = <NetworkSelectionButton chains={chains} />
     button = (
       <button
@@ -106,8 +106,6 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         closeModal={() => setIsAccountModalOpen(false)}
         isOpen={isAccountModalOpen}
         TosDisclaimer={TosDisclaimer}
-        account={account}
-        disconnect={disconnect}
       />
       <WalletConnectionModal
         t={t}

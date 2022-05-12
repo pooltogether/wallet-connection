@@ -28,19 +28,19 @@ export const getRpcUrl = (chainId: number, apiKeys?: ProviderApiKeys): string =>
     }
 
     const chainData = getChain(chainId)
-    const rpcUrl = chainData?.rpcUrls?.[0]
+    const rpcUrl = !!chainData?.rpcUrls ? Object.values(chainData.rpcUrls)[0] : null
 
     if (!!rpcUrl) {
       return rpcUrl
     } else {
       console.warn(`getRpcUrl | Chain id ${chainId} not supported.`)
       const chainData = getChain(CHAIN_ID.mainnet)
-      return chainData.rpcUrls[0]
+      return Object.values(chainData.rpcUrls)[0]
     }
   } catch (e) {
     console.error(e)
     console.warn(`getRpcUrl | Chain id ${chainId} not supported.`)
     const chainData = getChain(CHAIN_ID.mainnet)
-    return chainData.rpcUrls[0]
+    return Object.values(chainData.rpcUrls)[0]
   }
 }

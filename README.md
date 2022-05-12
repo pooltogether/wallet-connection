@@ -114,8 +114,6 @@ Transactions
 Wallet
 `useUsersAddress`
 `useWalletChainId`
-`useWalletProvider`
-`useWalletSigner`
 `useIsWalletOnChainId`
 
 Utilities
