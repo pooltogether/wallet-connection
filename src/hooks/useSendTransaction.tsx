@@ -9,13 +9,15 @@ import { useUsersAddress } from './useUsersAddress'
 import { useWalletChainId } from './useWalletChainId'
 import { TransactionToast, TransactionToastStatus } from '@pooltogether/react-components'
 import React from 'react'
-import { i18nTranslate } from '.yalc/@pooltogether/react-components/dist/types'
 
 /**
  * @param log optional error logger
  * @returns
  */
-export const useSendTransaction = (t?: i18nTranslate, log?: (message: string) => void) => {
+export const useSendTransaction = (
+  t?: (key: string) => string,
+  log?: (message: string) => void
+) => {
   const usersAddress = useUsersAddress()
   const chainId = useWalletChainId()
   const createTransaction = useUpdateAtom(createTransactionsAtom)
