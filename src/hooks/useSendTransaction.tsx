@@ -2,17 +2,20 @@ import { useUpdateAtom } from 'jotai/utils'
 import { createTransactionsAtom, updateTransactionsAtom } from '../atoms'
 import { SendTransactionOptions, TransactionCallbacks } from '../interfaces'
 import { TransactionReceipt, TransactionResponse } from '@ethersproject/providers'
-import { toast } from 'react-toastify'
+import { toast, ToastContentProps } from 'react-toastify'
 import { v4 as uuid } from 'uuid'
 import { TransactionState, TransactionStatus } from '../constants'
 import { useUsersAddress } from './useUsersAddress'
 import { useWalletChainId } from './useWalletChainId'
+import { TransactionToast, TransactionToastStatus } from '@pooltogether/react-components'
+import React from 'react'
+import { i18nTranslate } from '.yalc/@pooltogether/react-components/dist/types'
 
 /**
  * @param log optional error logger
  * @returns
  */
-export const useSendTransaction = (log?: (message: string) => void) => {
+export const useSendTransaction = (t?: i18nTranslate, log?: (message: string) => void) => {
   const usersAddress = useUsersAddress()
   const chainId = useWalletChainId()
   const createTransaction = useUpdateAtom(createTransactionsAtom)
@@ -41,7 +44,18 @@ export const useSendTransaction = (log?: (message: string) => void) => {
       callbacks?.onSentToWallet?.(id)
       const responsePromise = callTransaction()
       toast.promise(responsePromise, {
-        pending: `${name} confirmation is pending`
+        pending: {
+          render: () => {
+            return (
+              <TransactionToast
+                message={name}
+                chainId={chainId}
+                status={TransactionToastStatus.pendingUserConfirmation}
+                t={t}
+              />
+            )
+          }
+        }
       })
       response = await responsePromise
       // Chain id may be set to 0 if EIP-155 is disabled and legacy signing is used
@@ -55,10 +69,46 @@ export const useSendTransaction = (log?: (message: string) => void) => {
 
       const receiptPromise = response.wait()
       toast.promise(receiptPromise, {
-        // TODO: We could make pending & succeded toasts include the tx hash & a link to etherscan.
-        pending: `${name} is pending`,
-        success: `${name} has completed`,
-        error: `${name} was rejected`
+        pending: {
+          render: () => {
+            return (
+              <TransactionToast
+                message={name}
+                chainId={chainId}
+                status={TransactionToastStatus.pending}
+                t={t}
+              />
+            )
+          }
+        },
+        success: {
+          render: (props: ToastContentProps<TransactionReceipt>) => {
+            const { data } = props
+            return (
+              <TransactionToast
+                message={name}
+                chainId={chainId}
+                status={TransactionToastStatus.success}
+                hash={data.transactionHash}
+                t={t}
+              />
+            )
+          }
+        },
+        error: {
+          render: (props: ToastContentProps<TransactionReceipt>) => {
+            const { data } = props
+            return (
+              <TransactionToast
+                message={name}
+                chainId={chainId}
+                status={TransactionToastStatus.error}
+                hash={data.transactionHash}
+                t={t}
+              />
+            )
+          }
+        }
       })
       receipt = await receiptPromise
 
@@ -84,7 +134,19 @@ export const useSendTransaction = (log?: (message: string) => void) => {
           status: TransactionStatus.cancelled,
           state: TransactionState.complete
         })
-        toast.error(`${name} confirmation was cancelled`)
+        toast.error({
+          render() {
+            return (
+              <TransactionToast
+                message={name}
+                chainId={chainId}
+                status={TransactionToastStatus.cancelled}
+                hash={receipt?.transactionHash}
+                t={t}
+              />
+            )
+          }
+        })
       } else if (e?.error?.message) {
         const errorDetails = getErrorDetails(e.error.message)
 
@@ -95,7 +157,19 @@ export const useSendTransaction = (log?: (message: string) => void) => {
           state: TransactionState.complete
         })
         const errorMessage = `Transaction failed - ${errorDetails}`
-        toast.error(errorMessage)
+        toast.error({
+          render() {
+            return (
+              <TransactionToast
+                message={errorMessage}
+                chainId={chainId}
+                status={TransactionToastStatus.cancelled}
+                hash={receipt?.transactionHash}
+                t={t}
+              />
+            )
+          }
+        })
         log?.(errorMessage)
       } else {
         updateTransaction({
@@ -105,7 +179,19 @@ export const useSendTransaction = (log?: (message: string) => void) => {
           state: TransactionState.complete
         })
         const errorMessage = `Transaction failed - Unknown error`
-        toast.error(errorMessage)
+        toast.error({
+          render() {
+            return (
+              <TransactionToast
+                message={errorMessage}
+                chainId={chainId}
+                status={TransactionToastStatus.cancelled}
+                hash={receipt?.transactionHash}
+                t={t}
+              />
+            )
+          }
+        })
         log?.(errorMessage)
       }
     }

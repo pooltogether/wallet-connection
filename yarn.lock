@@ -2099,10 +2099,10 @@
   resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.8.0.tgz#687f810cff5a7bec8ae0b469422bf111e4f4e16d"
   integrity sha512-sFeG22oX1YAuJ/JnvGwD+E8f3rNHnG3QWNBmdchnY27MrdH2IiUTlTONArYCIJ4m03pQS1C6ESEp8nb1qS98og==
 
-"@pooltogether/react-components@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.12.0.tgz#1dd030b6c07683afa1bebe4c7fece2dadc56ff4f"
-  integrity sha512-JS5PHXy6C8y4vxTS41MC7LSYjRRExQ0ztOXhUEYjboVInfqUsuawE2XJ5ZfI9TCetf2CLVxKIgAYWOX7MDRplA==
+"@pooltogether/react-components@^1.12.12":
+  version "1.12.12"
+  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.12.12.tgz#dddcb4b3593b4d326ec88aad45d99b89907f1e88"
+  integrity sha512-nVotg/VzaoA1a8IUUXT/96Z7dElrL7S1o8G2t+iLnigHyNHegOBvCBYJin/mqAu72kWjQg4V+5E796VU25zDGA==
   dependencies:
     "@download/blockies" "^1.0.3"
     "@reach/dialog" "^0.15.0"
