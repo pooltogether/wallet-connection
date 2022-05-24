@@ -1,23 +1,13 @@
 {
   "name": "@pooltogether/wallet-connection",
   "description": "PoolTogether wallet connection logic, UI elements and utility hooks for sending and managing transactions.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "license": "MIT",
   "author": "PoolTogether Inc.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "keywords": [
-    "react",
-    "library",
-    "components",
-    "web3",
-    "ethers",
-    "ethereum"
-  ],
+  "files": ["dist", "src"],
+  "keywords": ["react", "library", "components", "web3", "ethers", "ethereum"],
   "engines": {
     "node": ">=10"
   },

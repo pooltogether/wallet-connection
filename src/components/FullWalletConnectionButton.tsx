@@ -25,6 +25,7 @@ export interface FullWalletConnectionProps {
   iconSizeClassName?: string
   pendingIconSizeClassName?: string
   TosDisclaimer: React.ReactNode
+  theme?: SquareButtonTheme
   t?: i18nTranslate
 }
 
@@ -41,6 +42,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
     iconSizeClassName,
     pendingIconSizeClassName,
     t,
+    theme,
     TosDisclaimer
   } = props
   const { data: account } = useAccount()
@@ -58,7 +60,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
       className={classNames(buttonClassName)}
       onClick={() => setIsWalletConnectionModalOpen(true)}
       size={SquareButtonSize.sm}
-      theme={SquareButtonTheme.teal}
+      theme={theme}
     >
       Connect Wallet
     </SquareButton>
@@ -120,5 +122,6 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
 FullWalletConnectionButton.defaultProps = {
   className: 'flex space-x-4 items-center',
   iconSizeClassName: 'w-5 h-5',
-  pendingIconSizeClassName: 'w-4 h-4'
+  pendingIconSizeClassName: 'w-4 h-4',
+  theme: SquareButtonTheme.teal
 }
