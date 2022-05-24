@@ -50,6 +50,8 @@ const FullWalletConnectionButton: React.FC<FullWalletConnectionButtonProps> = (p
 
   if (!ready) return null
 
+  const isInjected = connector.id === 'injected'
+
   return (
     <li>
       <button
@@ -64,8 +66,14 @@ const FullWalletConnectionButton: React.FC<FullWalletConnectionButtonProps> = (p
         )}
         disabled={disabled}
       >
-        <WalletIcon wallet={name.toLowerCase()} className='ml-4' sizeClassName='w-6 h-6' />
-        <span className='capitalize leading-none tracking-wider font-bold text-lg'>{name}</span>
+        <WalletIcon
+          wallet={isInjected ? 'injected' : name.toLowerCase()}
+          className='ml-4'
+          sizeClassName='w-6 h-6'
+        />
+        <span className='capitalize leading-none tracking-wider font-bold text-lg'>
+          {isInjected ? 'injected' : name}
+        </span>
         {pending && <ThemedClipSpinner sizeClassName='w-5 h-5 ml-2' />}
       </button>
     </li>
