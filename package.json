@@ -6,8 +6,18 @@
   "author": "PoolTogether Inc.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
-  "files": ["dist", "src"],
-  "keywords": ["react", "library", "components", "web3", "ethers", "ethereum"],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "react",
+    "library",
+    "components",
+    "web3",
+    "ethers",
+    "ethereum"
+  ],
   "engines": {
     "node": ">=10"
   },
@@ -45,9 +55,9 @@
     "@pooltogether/current-pool-data": "^3.7.2",
     "@pooltogether/etherplex": "^1.1.2",
     "@pooltogether/evm-chains-extended": "^0.6.4-beta.1",
-    "@pooltogether/hooks": "^1.8.0",
-    "@pooltogether/react-components": "^1.12.12",
-    "@pooltogether/utilities": "^0.3.9",
+    "@pooltogether/hooks": "^1.9.0",
+    "@pooltogether/react-components": "^1.13.0",
+    "@pooltogether/utilities": "^0.3.11",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-info": "^5.3.21",
@@ -89,9 +99,9 @@
     "@pooltogether/current-pool-data": "^3.7.2",
     "@pooltogether/etherplex": "^1.1.2",
     "@pooltogether/evm-chains-extended": "^0.6.4-beta.1",
-    "@pooltogether/hooks": "^1.8.0",
-    "@pooltogether/react-components": "^1.12.0",
-    "@pooltogether/utilities": "^0.3.9",
+    "@pooltogether/hooks": "^1.9.0",
+    "@pooltogether/react-components": "^1.13.0",
+    "@pooltogether/utilities": "^0.3.11",
     "beautiful-react-hooks": "^1.0.2",
     "classnames": "^2.3.1",
     "eth-revert-reason": "^1.0.3",
