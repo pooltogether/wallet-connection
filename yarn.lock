@@ -2094,15 +2094,15 @@
   dependencies:
     evm-chains "^0.2.0"
 
-"@pooltogether/hooks@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.8.0.tgz#687f810cff5a7bec8ae0b469422bf111e4f4e16d"
-  integrity sha512-sFeG22oX1YAuJ/JnvGwD+E8f3rNHnG3QWNBmdchnY27MrdH2IiUTlTONArYCIJ4m03pQS1C6ESEp8nb1qS98og==
+"@pooltogether/hooks@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.9.0.tgz#fe7025ed583dba1af617fd31cc3a5680ec53f755"
+  integrity sha512-GUQVW32ud8oa0wKJfQmL8WzyzvH0PkHLMC4cNtdX0mz/rue9zi25g6bOF16c0DATsA9mgpZXGmDGrWm/iiCniQ==
 
-"@pooltogether/react-components@^1.12.12":
-  version "1.12.12"
-  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.12.12.tgz#dddcb4b3593b4d326ec88aad45d99b89907f1e88"
-  integrity sha512-nVotg/VzaoA1a8IUUXT/96Z7dElrL7S1o8G2t+iLnigHyNHegOBvCBYJin/mqAu72kWjQg4V+5E796VU25zDGA==
+"@pooltogether/react-components@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.13.0.tgz#db8b43ff0f95f1029fca73ed203552754f4cc823"
+  integrity sha512-KWWZFVCEfAZLSmPPzQnX42Futv5ZH/qo4Bvu0uCwenpgOK84PSJ9PrDYZwHkQHFuMIpxNQXKh1qFGhDTNXBWiw==
   dependencies:
     "@download/blockies" "^1.0.3"
     "@reach/dialog" "^0.15.0"
@@ -2121,10 +2121,10 @@
     react-toastify "^8.2.0"
     react-tooltip "^4.2.21"
 
-"@pooltogether/utilities@^0.3.9":
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.3.9.tgz#af6ded2c0128face483731205eb7f87e3d4879bc"
-  integrity sha512-rQMRX0oBvFoZISBty+VAmD62fb6gzXzL3f8Z6bnqDQ5EuR8+cM/6a7acW72yb8nl5o1hBlVo6bw4VYHIelLoIg==
+"@pooltogether/utilities@^0.3.11":
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.3.11.tgz#b09eae15c9e3dc6d4ac30623afc51e761b05ae40"
+  integrity sha512-gEcxl604z8K53HBU2N0MxRCbSg+WhDXKwrrmwEEyg8jE9yK4XeJtXozpEPtA/HJXdDw033xRiFM6qAe3icDw3Q==
 
 "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
   version "2.11.4"
