@@ -2087,22 +2087,22 @@
     lodash.merge "^4.6.2"
     zen-observable-ts "^0.8.20"
 
-"@pooltogether/evm-chains-extended@^0.6.4-beta.1":
-  version "0.6.4-beta.1"
-  resolved "https://registry.yarnpkg.com/@pooltogether/evm-chains-extended/-/evm-chains-extended-0.6.4-beta.1.tgz#dba3a24fe22c2c0832e9cf0eb4af2e5bad5615f0"
-  integrity sha512-wTaR1bJGWDoW/xlvymtuEZOwgQu3N4pDHTdCm00lMFN0AH8JKczyJRijTv5Jef7dhGmiZIMOlyBFCFkMlVU6ew==
+"@pooltogether/evm-chains-extended@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@pooltogether/evm-chains-extended/-/evm-chains-extended-0.7.0.tgz#c802ab29e7bc68bde4a9059e1c2565734105de72"
+  integrity sha512-sfq/u3bNUJFsDrroZuUMY6Mtdiaotpw4Lj9e0zscfdu6yksVfQu0lZmItSE4oYs1oRyUyanGBDKJ0D/2DAABxw==
   dependencies:
     evm-chains "^0.2.0"
 
-"@pooltogether/hooks@^1.9.0":
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.9.0.tgz#fe7025ed583dba1af617fd31cc3a5680ec53f755"
-  integrity sha512-GUQVW32ud8oa0wKJfQmL8WzyzvH0PkHLMC4cNtdX0mz/rue9zi25g6bOF16c0DATsA9mgpZXGmDGrWm/iiCniQ==
+"@pooltogether/hooks@^1.10.0":
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.10.0.tgz#bd446ba4ce81b8d17ef4cd76a67eb1b163eefa40"
+  integrity sha512-UKQBZh8FSa1qRyRR/1yVYVvlIBxaT6L7N9xMQuIrbenXDTQexlnzZDHlFVEgCTUQxSaNHXSaoz8PWapXdp17Vw==
 
-"@pooltogether/react-components@^1.13.0":
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.13.0.tgz#db8b43ff0f95f1029fca73ed203552754f4cc823"
-  integrity sha512-KWWZFVCEfAZLSmPPzQnX42Futv5ZH/qo4Bvu0uCwenpgOK84PSJ9PrDYZwHkQHFuMIpxNQXKh1qFGhDTNXBWiw==
+"@pooltogether/react-components@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.14.0.tgz#d8ddb64d775bebbe64f3e0c1ce236d7692bc6f6b"
+  integrity sha512-Ud5r4doeG7EflwA4rNG5dmTt/YL3WMrXNJyIjH5XgS4dp6flIJ/bSw0QzZTMqIWtudQWURf3YVXAD36kgTmRzQ==
   dependencies:
     "@download/blockies" "^1.0.3"
     "@reach/dialog" "^0.15.0"
@@ -2121,10 +2121,10 @@
     react-toastify "^8.2.0"
     react-tooltip "^4.2.21"
 
-"@pooltogether/utilities@^0.3.11":
-  version "0.3.11"
-  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.3.11.tgz#b09eae15c9e3dc6d4ac30623afc51e761b05ae40"
-  integrity sha512-gEcxl604z8K53HBU2N0MxRCbSg+WhDXKwrrmwEEyg8jE9yK4XeJtXozpEPtA/HJXdDw033xRiFM6qAe3icDw3Q==
+"@pooltogether/utilities@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.4.0.tgz#6fd342c16250fa2288b9280db28c41f4462ae8d6"
+  integrity sha512-Nwbu7Gx8PKtXgczcPyqCFdaxk4zcgtdwKdbgR8TAAVxa/FayHYz6j8mwi71gVMfabBUHOJweCyKUJ1vbwveD7g==
 
 "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
   version "2.11.4"
