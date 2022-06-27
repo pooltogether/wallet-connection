@@ -1,4 +1,5 @@
 import { useAtom } from 'jotai'
+import { useMemo } from 'react'
 import { transactionsAtom } from '../atoms'
 
 /**
@@ -8,5 +9,6 @@ import { transactionsAtom } from '../atoms'
  */
 export const useTransaction = (id: string) => {
   const [transactions] = useAtom(transactionsAtom)
-  return transactions.find((transaction) => transaction.id === id)
+  const queryKey = transactions.map((t) => t.id).join('-')
+  return useMemo(() => transactions.find((transaction) => transaction.id === id), [queryKey, id])
 }

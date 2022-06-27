@@ -1,4 +1,5 @@
 import { getAddress } from 'ethers/lib/utils'
+import { useMemo } from 'react'
 import { useAccount } from 'wagmi'
 
 /**
@@ -7,5 +8,7 @@ import { useAccount } from 'wagmi'
  */
 export const useUsersAddress = () => {
   const { data } = useAccount()
-  return !!data ? getAddress(data.address) : null
+  return useMemo(() => {
+    return !!data ? getAddress(data.address) : null
+  }, [data?.address])
 }
