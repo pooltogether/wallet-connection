@@ -3,39 +3,38 @@ import React, { useState } from 'react'
 import classNames from 'classnames'
 import { Connector, useConnect } from 'wagmi'
 
-export const WalletConnectionList: React.FC<{ className?: string; closeModal: () => void }> = (
-  props
-) => {
-  const { className, closeModal } = props
-  const { connectors, connect } = useConnect()
-  const [pendingConnector, setPendingConnector] = useState<Connector>()
+export const WalletConnectionList: React.FC<{ className?: string; onWalletConnected: () => void }> =
+  (props) => {
+    const { className, onWalletConnected } = props
+    const { connectors, connect } = useConnect()
+    const [pendingConnector, setPendingConnector] = useState<Connector>()
 
-  const connectWallet = async (connector: Connector) => {
-    setPendingConnector(connector)
-    try {
-      await connect(connector)
-      closeModal()
-    } catch (e) {
-      console.error('Error connecting to wallet')
-      return
+    const connectWallet = async (connector: Connector) => {
+      setPendingConnector(connector)
+      try {
+        await connect(connector)
+        onWalletConnected?.()
+      } catch (e) {
+        console.error('Error connecting to wallet', e)
+        return
+      }
+      setPendingConnector(undefined)
     }
-    setPendingConnector(undefined)
-  }
 
-  return (
-    <ul className={classNames('space-y-2 mx-auto max-w-sm', className)}>
-      {connectors.map((connector) => (
-        <FullWalletConnectionButton
-          key={connector.id}
-          connector={connector}
-          connectWallet={() => connectWallet(connector)}
-          disabled={!!pendingConnector}
-          pending={pendingConnector === connector}
-        />
-      ))}
-    </ul>
-  )
-}
+    return (
+      <ul className={classNames('space-y-2 mx-auto', className)}>
+        {connectors.map((connector) => (
+          <FullWalletConnectionButton
+            key={connector.id}
+            connector={connector}
+            connectWallet={() => connectWallet(connector)}
+            disabled={!!pendingConnector}
+            pending={pendingConnector === connector}
+          />
+        ))}
+      </ul>
+    )
+  }
 
 interface FullWalletConnectionButtonProps {
   connector: Connector

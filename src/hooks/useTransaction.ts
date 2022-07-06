@@ -9,6 +9,9 @@ import { transactionsAtom } from '../atoms'
  */
 export const useTransaction = (id: string) => {
   const [transactions] = useAtom(transactionsAtom)
-  const queryKey = transactions.map((t) => t.id).join('-')
-  return useMemo(() => transactions.find((transaction) => transaction.id === id), [queryKey, id])
+  // const queryKey = transactions.map((t) => t.id).join('-')
+  return useMemo(
+    () => transactions.find((transaction) => transaction.id === id),
+    [transactions, id]
+  )
 }

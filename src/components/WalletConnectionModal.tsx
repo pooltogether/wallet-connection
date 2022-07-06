@@ -3,6 +3,7 @@ import { Modal } from '@pooltogether/react-components'
 import React from 'react'
 import { WalletConnectionList } from './WalletConnectionList'
 import { i18nTranslate } from '../interfaces'
+import classNames from 'classnames'
 
 interface WalletConnectionModalProps {
   isOpen: boolean
@@ -23,10 +24,27 @@ export const WalletConnectionModal: React.FC<WalletConnectionModalProps> = (prop
       widthClassName='w-screen xs:w-full'
       maxWidthClassName='xs:max-w-md'
       roundedClassName='rounded-none xs:rounded-xl'
+      title='Connect to a wallet'
     >
-      <h4 className='mb-4'>Connect to a wallet</h4>
+      <WalletConnectionModalContent TosDisclaimer={TosDisclaimer} onWalletConnected={closeModal} />
+    </Modal>
+  )
+}
+
+export const WalletConnectionModalContent = (props: {
+  TosDisclaimer: React.ReactNode
+  onWalletConnected: () => void
+  className?: string
+  t?: i18nTranslate
+}) => {
+  const { TosDisclaimer, onWalletConnected, className } = props
+  return (
+    <>
       <p className='mb-8'>{TosDisclaimer}</p>
-      <WalletConnectionList className='mb-4' closeModal={closeModal} />
+      <WalletConnectionList
+        className={classNames('mb-4', className)}
+        onWalletConnected={onWalletConnected}
+      />
       <a
         className='text-pt-teal transition hover:opacity-70 underline text-sm'
         href='https://docs.ethhub.io/using-ethereum/wallets/intro-to-ethereum-wallets/'
@@ -35,6 +53,6 @@ export const WalletConnectionModal: React.FC<WalletConnectionModalProps> = (prop
       >
         {`What's a wallet?`}
       </a>
-    </Modal>
+    </>
   )
 }

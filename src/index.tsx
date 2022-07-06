@@ -28,6 +28,9 @@ export * from './hooks/useUsersPendingTransactions'
 export * from './hooks/useUsersTransactions'
 export * from './hooks/useUpdateStoredPendingTransactions'
 
+// Hooks - Utilities
+export * from './hooks/useApproveErc20'
+
 // Hooks - Data
 export * from './hooks/useReadProvider'
 export * from './hooks/useReadProviders'
