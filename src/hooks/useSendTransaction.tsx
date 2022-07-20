@@ -202,6 +202,7 @@ export const useSendTransaction = (
   return (options: SendTransactionOptions) => {
     const { name, callTransaction, callbacks } = options
     const id: string = uuid()
+    console.log('pre send', { id, name })
     createTransaction({ id, name, chainId, usersAddress })
     sendTransaction(id, name, chainId, callTransaction, callbacks)
     return id

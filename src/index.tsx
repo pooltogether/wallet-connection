@@ -23,7 +23,9 @@ export * from './hooks/useWalletChainId'
 
 // Hooks - Transactions
 export * from './hooks/useTransaction'
+export * from './hooks/useTransactions'
 export * from './hooks/useSendTransaction'
+export * from './hooks/useSendTransactions'
 export * from './hooks/useUsersPendingTransactions'
 export * from './hooks/useUsersTransactions'
 export * from './hooks/useUpdateStoredPendingTransactions'
