@@ -39,6 +39,7 @@ export const createTransactionsAtom = atom<
 /**
  * Write only.
  * Updates a transactions state, status, response or receipt in the storage.
+ * Overwrites some receipt and response data with null to ensure it they fit in local storage.
  */
 export const updateTransactionsAtom = atom<
   null,
@@ -51,6 +52,8 @@ export const updateTransactionsAtom = atom<
   }
 >(null, (get, set, transactionUpdate) => {
   const { id, state, status, response, receipt } = transactionUpdate
+  if (!!receipt) receipt.logs = null
+  if (!!response) response.data = null
   const transactions = [...get(transactionsAtom)]
   const index = transactions.findIndex((transaction) => transaction.id === id)
   transactions[index] = {
