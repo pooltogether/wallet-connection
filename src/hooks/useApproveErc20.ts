@@ -8,8 +8,8 @@ import { useSigner } from 'wagmi'
 export const useApproveErc20 = (
   tokenAddress: string,
   spenderAddress: string,
+  options: Partial<Omit<SendTransactionOptions, 'callTransaction'>> = {},
   amountUnformatted: BigNumber = MaxUint256,
-  options?: Partial<Omit<SendTransactionOptions, 'callTransaction'>>,
   t?: (key: string) => string,
   log?: (message: string) => void
 ) => {

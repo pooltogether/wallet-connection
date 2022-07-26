@@ -20,9 +20,8 @@ export const WalletConnectionModal: React.FC<WalletConnectionModalProps> = (prop
       label='wallet-connection-modal'
       isOpen={isOpen}
       closeModal={closeModal}
-      heightClassName='h-screen xs:h-auto'
       widthClassName='w-screen xs:w-full'
-      maxWidthClassName='xs:max-w-md'
+      maxWidthClassName='max-w-md'
       roundedClassName='rounded-none xs:rounded-xl'
       title='Connect to a wallet'
     >

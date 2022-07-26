@@ -67,7 +67,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         onClick={() => setIsAccountModalOpen(true)}
         className={classNames(
           buttonClassName,
-          'flex text-pt-teal hover:text-inverse transition-colors font-semibold items-center space-x-2'
+          'flex text-gradient-magenta hover:text-inverse transition-colors font-semibold items-center space-x-2'
         )}
       >
         <ThemedClipSpinner sizeClassName={pendingIconSizeClassName} />
@@ -81,7 +81,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         onClick={() => setIsAccountModalOpen(true)}
         className={classNames(
           buttonClassName,
-          'flex text-pt-teal hover:text-inverse transition-colors font-semibold items-center space-x-2'
+          'flex text-gradient-magenta hover:text-inverse transition-colors font-semibold items-center space-x-2'
         )}
       >
         <AccountAvatar address={account.address} sizeClassName={iconSizeClassName} />

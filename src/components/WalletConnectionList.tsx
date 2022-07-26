@@ -8,6 +8,7 @@ export const WalletConnectionList: React.FC<{ className?: string; onWalletConnec
     const { className, onWalletConnected } = props
     const { connectors, connect } = useConnect()
     const [pendingConnector, setPendingConnector] = useState<Connector>()
+    const [errorMessage, setErrorMessage] = useState<string>()
 
     const connectWallet = async (connector: Connector) => {
       setPendingConnector(connector)
@@ -16,23 +17,27 @@ export const WalletConnectionList: React.FC<{ className?: string; onWalletConnec
         onWalletConnected?.()
       } catch (e) {
         console.error('Error connecting to wallet', e)
+        setErrorMessage('Error connecting to wallet')
         return
       }
       setPendingConnector(undefined)
     }
 
     return (
-      <ul className={classNames('space-y-2 mx-auto', className)}>
-        {connectors.map((connector) => (
-          <FullWalletConnectionButton
-            key={connector.id}
-            connector={connector}
-            connectWallet={() => connectWallet(connector)}
-            disabled={!!pendingConnector}
-            pending={pendingConnector === connector}
-          />
-        ))}
-      </ul>
+      <>
+        <ul className={classNames('space-y-2 mx-auto', className)}>
+          {connectors.map((connector) => (
+            <FullWalletConnectionButton
+              key={connector.id}
+              connector={connector}
+              connectWallet={() => connectWallet(connector)}
+              disabled={!!pendingConnector}
+              pending={pendingConnector === connector}
+            />
+          ))}
+        </ul>
+        {errorMessage && <div className='text-pt-red-light pt-2 text-xxs'>{errorMessage}</div>}
+      </>
     )
   }
 
