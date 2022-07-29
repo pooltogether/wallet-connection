@@ -4,6 +4,19 @@ import { ALCHEMY_CHAIN_IDS, CHAIN_ID, INFURA_CHAIN_IDS } from '../constants'
 import { ProviderApiKeys } from '../interfaces'
 import { getChain } from './getChain'
 
+export const PT_RPC_PROXY = Object.freeze({
+  [CHAIN_ID.mainnet]: 'https://ethereum-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID.rinkeby]: 'https://rinkeby-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID.optimism]: 'https://optimism-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID['optimism-kovan']]:
+    'https://optimism-kovan-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID.polygon]: 'https://polygon-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID.mumbai]: 'https://polygon-mumbai-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID.fuji]: 'https://avalanche-fuji-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID.avalanche]:
+    'https://avalanche-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/'
+})
+
 /**
  * Creates an RPC URL using configured API keys if possible.
  * Attempts to use API keys for RPC providers first.
@@ -14,6 +27,8 @@ import { getChain } from './getChain'
 export const getRpcUrl = (chainId: number, apiKeys?: ProviderApiKeys): string => {
   const alchemyApiKey = apiKeys?.alchemy
   const infuraApiKey = apiKeys?.infura
+
+  if (!!PT_RPC_PROXY[chainId]) return PT_RPC_PROXY[chainId]
 
   try {
     if (!!alchemyApiKey && ALCHEMY_CHAIN_IDS.includes(chainId)) {

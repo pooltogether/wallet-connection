@@ -7,7 +7,7 @@ import {
 } from '@ethersproject/providers'
 import { ALCHEMY_CHAIN_IDS, CHAIN_ID, ETHERSCAN_CHAIN_IDS, INFURA_CHAIN_IDS } from '../constants'
 import { ProviderApiKeys } from '../interfaces'
-import { getRpcUrl } from './getRpcUrl'
+import { getRpcUrl, PT_RPC_PROXY } from './getRpcUrl'
 import { getChain } from './getChain'
 
 /**
@@ -22,6 +22,10 @@ export const getReadProvider = (chainId: number, apiKeys?: ProviderApiKeys): Bas
   const alchemyApiKey = apiKeys?.alchemy
   const infuraApiKey = apiKeys?.infura
   const etherscanApiKey = apiKeys?.etherscan
+
+  if (!!PT_RPC_PROXY[chainId]) {
+    return new JsonRpcProvider(PT_RPC_PROXY[chainId], chainId)
+  }
 
   try {
     if (!!alchemyApiKey && ALCHEMY_CHAIN_IDS.includes(chainId)) {
