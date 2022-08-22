@@ -56,7 +56,7 @@
     "@pooltogether/etherplex": "^1.1.2",
     "@pooltogether/evm-chains-extended": "^0.7.0",
     "@pooltogether/hooks": "^1.10.4",
-    "@pooltogether/react-components": "^1.15.0",
+    "@pooltogether/react-components": "^1.18.2",
     "@pooltogether/utilities": "^0.5.1",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@storybook/addon-essentials": "^6.4.19",
