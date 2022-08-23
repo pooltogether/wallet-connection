@@ -2118,7 +2118,7 @@
   dependencies:
     evm-chains "^0.2.0"
 
-"@pooltogether/hooks@^1.10.4":
+"@pooltogether/hooks@1.10.4":
   version "1.10.4"
   resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.10.4.tgz#28705828c53f1de21d20dc55747cae245f06cc71"
   integrity sha512-NekbTL70xKLk3bjq57GA+qs76UDa6KAf5idpu4aO+yvigMRw0rMyvEbGHO+QNL/wzIsueIm1tJXt09tQQ6vVGw==
@@ -2145,10 +2145,10 @@
     react-toastify "^8.2.0"
     react-tooltip "^4.2.21"
 
-"@pooltogether/utilities@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.4.0.tgz#6fd342c16250fa2288b9280db28c41f4462ae8d6"
-  integrity sha512-Nwbu7Gx8PKtXgczcPyqCFdaxk4zcgtdwKdbgR8TAAVxa/FayHYz6j8mwi71gVMfabBUHOJweCyKUJ1vbwveD7g==
+"@pooltogether/utilities@0.5.2-beta.1":
+  version "0.5.2-beta.1"
+  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.5.2-beta.1.tgz#65a5a1b47a3b163947c1a06331d7c5273d0b6b4f"
+  integrity sha512-v+XKCxFwyF6wc3xS5rwo2A+ZFmeY1aXMONax3SRD7/XMKC0C79ZUzEebK9k0uaSt+k2k0NAXp3Uv2Ug6I9lZSg==
 
 "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
   version "2.11.4"
