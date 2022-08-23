@@ -1,7 +1,7 @@
 {
   "name": "@pooltogether/wallet-connection",
   "description": "PoolTogether wallet connection logic, UI elements and utility hooks for sending and managing transactions.",
-  "version": "0.5.5",
+  "version": "0.5.4-beta.1",
   "license": "MIT",
   "author": "PoolTogether Inc.",
   "main": "dist/index.js",
