@@ -2,7 +2,7 @@ import { NetworkIcon } from '@pooltogether/react-components'
 import React, { useState } from 'react'
 
 import classNames from 'classnames'
-import { Chain, useConnect } from 'wagmi'
+import { Chain, useAccount } from 'wagmi'
 import { useWalletChainId } from '../hooks/useWalletChainId'
 import { NetworkSelectionModal } from './NetworkSelectionModal'
 import { i18nTranslate } from '../interfaces'
@@ -17,11 +17,11 @@ export interface NetworkSelectionProps {
 
 export const NetworkSelectionButton: React.FC<NetworkSelectionProps> = (props) => {
   const { chains, className, t } = props
-  const { activeConnector } = useConnect()
+  const { connector } = useAccount()
   const chainId = useWalletChainId()
   const [isOpen, setIsOpen] = useState(false)
 
-  if (!activeConnector) return null
+  if (!connector) return null
 
   return (
     <>

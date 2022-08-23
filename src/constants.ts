@@ -128,7 +128,6 @@ const CUSTOM_CHAINS: Chain[] = [
       symbol: 'AVAX',
       decimals: 18
     },
-    // @ts-ignore
     rpcUrls: { default: 'https://api.avax.network/ext/bc/C/rpc' },
     // @ts-ignore
     blockExplorers: { snowtrace: { name: 'SnowTrace', url: 'https://snowtrace.io' } },
@@ -147,7 +146,7 @@ const CUSTOM_CHAINS: Chain[] = [
     },
     // @ts-ignore
     blockExplorers: {
-      default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
+      snowtrace: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
     },
     testnet: true
   }

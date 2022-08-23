@@ -9,7 +9,7 @@ import { useAtom } from 'jotai'
 
 import { AccountModal } from './AccountModal'
 import classNames from 'classnames'
-import { Chain, useAccount, useConnect } from 'wagmi'
+import { Chain, useAccount } from 'wagmi'
 import { i18nTranslate } from '../interfaces'
 import { useUsersPendingTransactions } from '../hooks/useUsersPendingTransactions'
 import { AccountName } from './AccountName'
@@ -45,14 +45,13 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
     theme,
     TosDisclaimer
   } = props
-  const { data: account } = useAccount()
-  const { activeConnector } = useConnect()
+  const account = useAccount()
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false)
   const [isWalletConnectionModalOpen, setIsWalletConnectionModalOpen] = useAtom(
     isWalletConnectionModalOpenAtom
   )
   const pendingTransactions = useUsersPendingTransactions(account?.address)
-  const connected = !!activeConnector
+  const connected = !!account.connector
 
   let networkButton: React.ReactNode
   let button: React.ReactNode = (

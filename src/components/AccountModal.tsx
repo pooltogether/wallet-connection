@@ -29,13 +29,13 @@ interface AccountModalProps {
 
 export const AccountModal: React.FC<AccountModalProps> = (props) => {
   const { isOpen, closeModal } = props
-  const { data: account } = useAccount()
+  const account = useAccount()
   const { disconnect } = useDisconnect()
-  const { activeChain } = useNetwork()
+  const { chain } = useNetwork()
   const address = account?.address
   const connector = account?.connector
   const connectorName = connector?.name
-  const chainId = activeChain?.id
+  const chainId = chain?.id
   const transactions = useUsersTransactions(address)
   const filteredTransactions = transactions?.slice(transactions.length - 5).reverse()
   const setTransactions = useUpdateAtom(transactionsAtom)
