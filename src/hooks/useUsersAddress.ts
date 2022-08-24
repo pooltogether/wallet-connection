@@ -9,6 +9,6 @@ import { useAccount } from 'wagmi'
 export const useUsersAddress = () => {
   const account = useAccount()
   return useMemo(() => {
-    return !!account ? getAddress(account.address) : null
-  }, [account?.address])
+    return !!account && account.isConnected ? getAddress(account.address) : null
+  }, [account.address])
 }
