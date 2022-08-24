@@ -6,10 +6,14 @@ import { getChain } from './getChain'
 
 export const PT_RPC_PROXY = Object.freeze({
   [CHAIN_ID.mainnet]: 'https://ethereum-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [CHAIN_ID.rinkeby]: 'https://rinkeby-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID.goerli]: 'https://goerli-web3-provider-proxy.pooltogether-api.workers.dev/',
   [CHAIN_ID.optimism]: 'https://optimism-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [CHAIN_ID['optimism-kovan']]:
-    'https://optimism-kovan-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID['optimism-goerli']]:
+    'https://optimism-goerli-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID.arbitrum]:
+    'https://arbitrum-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID['arbitrum-goerli']]:
+    'https://arbitrum-goerli-web3-provider-proxy.pooltogether-api.workers.dev/',
   [CHAIN_ID.polygon]: 'https://polygon-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
   [CHAIN_ID.mumbai]: 'https://polygon-mumbai-web3-provider-proxy.pooltogether-api.workers.dev/',
   [CHAIN_ID.fuji]: 'https://avalanche-fuji-web3-provider-proxy.pooltogether-api.workers.dev/',
