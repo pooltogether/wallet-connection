@@ -2070,10 +2070,10 @@
   dependencies:
     evm-chains "^0.2.0"
 
-"@pooltogether/hooks@1.10.4":
-  version "1.10.4"
-  resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.10.4.tgz#28705828c53f1de21d20dc55747cae245f06cc71"
-  integrity sha512-NekbTL70xKLk3bjq57GA+qs76UDa6KAf5idpu4aO+yvigMRw0rMyvEbGHO+QNL/wzIsueIm1tJXt09tQQ6vVGw==
+"@pooltogether/hooks@1.11.0-beta.4":
+  version "1.11.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.11.0-beta.4.tgz#e5595c446a007dee46bb73980e2a225a4899a502"
+  integrity sha512-lq8QgNH9LIKFGhw6ix1MUMoI6T34K2bC3H3271ILvvwyrynNP4uDpUjXsNW4vsNiCW+ZFIFzXjA2ouQBSH6lnQ==
 
 "@pooltogether/react-components@1.19.0-beta.1":
   version "1.19.0-beta.1"
