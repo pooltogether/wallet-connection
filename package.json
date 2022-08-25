@@ -42,11 +42,11 @@
   "size-limit": [
     {
       "path": "dist/wallet-connection.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "150 KB"
     },
     {
       "path": "dist/wallet-connection.esm.js",
-      "limit": "10 KB"
+      "limit": "105 KB"
     }
   ],
   "devDependencies": {
