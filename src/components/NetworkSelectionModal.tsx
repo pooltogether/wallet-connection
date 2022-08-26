@@ -3,7 +3,7 @@ import { useWalletChainId } from '../hooks/useWalletChainId'
 import { BottomSheet, NetworkIcon, ThemedClipSpinner } from '@pooltogether/react-components'
 import classNames from 'classnames'
 
-import { Chain, useConnect, useNetwork } from 'wagmi'
+import { Chain, useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 import { getChainNameByChainId } from '../utilities/getChainNameByChainId'
 import { i18nTranslate } from '@pooltogether/react-components/dist/types'
 
@@ -16,28 +16,26 @@ interface NetworkSelectionModalProps {
 
 export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (props) => {
   const { chains, isOpen, closeModal, t } = props
-  const { activeChain, switchNetwork: _switchNetwork } = useNetwork()
+  const { chain } = useNetwork()
+  const { isLoading, switchNetwork } = useSwitchNetwork()
   const walletChainId = useWalletChainId()
-  const [switchingToNetwork, setSwitchingToNetwork] = useState<number>()
   const [errorMessage, setErrorMessage] = useState<string>()
-  const { activeConnector } = useConnect()
+  const { connector } = useAccount()
 
-  const switchNetwork = async (chainId: number) => {
+  const selectNetwork = async (chainId: number) => {
     setErrorMessage(undefined)
     if (walletChainId !== chainId) {
       try {
-        setSwitchingToNetwork(chainId)
-        await _switchNetwork(chainId)
+        switchNetwork(chainId)
       } catch (e) {
         console.error(e)
         setErrorMessage(`Error switching to ${getChainNameByChainId(chainId)}`)
       }
     }
-    setSwitchingToNetwork(undefined)
     closeModal()
   }
 
-  if (!activeConnector) return null
+  if (!connector) return null
 
   return (
     <BottomSheet
@@ -57,9 +55,9 @@ export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (prop
           <NetworkSelectionButton
             key={chain.id}
             chain={chain}
-            onClick={() => switchNetwork(chain.id)}
-            pending={switchingToNetwork === chain.id}
-            selected={activeChain.id === chain.id}
+            onClick={() => selectNetwork(chain.id)}
+            pending={isLoading}
+            selected={chain.id === chain.id}
           />
         ))}
       </ul>
@@ -67,8 +65,8 @@ export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (prop
         {errorMessage && <p className='text-pt-red-light'>{errorMessage}</p>}
         <p className='text-xxxs'>
           {t?.('currentlyConnectedTo') || 'Currently connected to'}
-          <b className={classNames('ml-1', { 'text-pt-red-light': activeChain.unsupported })}>
-            {activeChain.name || getChainNameByChainId(activeChain.id)}
+          <b className={classNames('ml-1', { 'text-pt-red-light': chain.unsupported })}>
+            {chain.name || getChainNameByChainId(chain.id)}
           </b>
         </p>
       </div>

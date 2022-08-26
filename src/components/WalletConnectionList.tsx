@@ -13,7 +13,7 @@ export const WalletConnectionList: React.FC<{ className?: string; closeModal: ()
   const connectWallet = async (connector: Connector) => {
     setPendingConnector(connector)
     try {
-      await connect(connector)
+      connect({ connector })
       closeModal()
     } catch (e) {
       console.error('Error connecting to wallet')

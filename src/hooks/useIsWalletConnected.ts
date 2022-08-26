@@ -1,10 +1,10 @@
-import { useConnect } from 'wagmi'
+import { useAccount } from 'wagmi'
 
 /**
  * Checks if a wallet is connected
  * @returns
  */
 export const useIsWalletConnected = () => {
-  const { activeConnector } = useConnect()
-  return Boolean(activeConnector)
+  const { connector } = useAccount()
+  return Boolean(connector)
 }

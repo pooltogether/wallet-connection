@@ -27,13 +27,15 @@ export const CHAIN_ID = Object.freeze({
   'xdai': 100,
   'polygon': 137,
   'matic': 137,
+  'mumbai': 80001,
   'optimism': 10,
-  'optimism-kovan': 69,
+  'optimism-goerli': 420,
   'avalanche': 43114,
   'fuji': 43113,
   'celo': 42220,
   'celo-testnet': 44787,
-  'mumbai': 80001
+  'arbitrum': 42161,
+  'arbitrum-goerli': 421613,
 })
 
 /**
@@ -45,9 +47,9 @@ export const ALCHEMY_CHAIN_IDS = Object.freeze([
   // Polygon
   137, 80001,
   // Optimism
-  10, 69,
+  10, 420,
   // Arbitrum
-  42161, 421611
+  42161, 421613
 ])
 
 /**
@@ -67,9 +69,9 @@ export const INFURA_CHAIN_IDS = Object.freeze([
   // Polygon
   137, 80001,
   // Optimism
-  10, 69,
+  10, 420,
   // Arbitrum
-  42161, 421611
+  42161, 421613
 ])
 
 /**
@@ -126,7 +128,6 @@ const CUSTOM_CHAINS: Chain[] = [
       symbol: 'AVAX',
       decimals: 18
     },
-    // @ts-ignore
     rpcUrls: { default: 'https://api.avax.network/ext/bc/C/rpc' },
     // @ts-ignore
     blockExplorers: { snowtrace: { name: 'SnowTrace', url: 'https://snowtrace.io' } },
@@ -145,7 +146,7 @@ const CUSTOM_CHAINS: Chain[] = [
     },
     // @ts-ignore
     blockExplorers: {
-      default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
+      snowtrace: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
     },
     testnet: true
   }
