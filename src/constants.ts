@@ -35,7 +35,7 @@ export const CHAIN_ID = Object.freeze({
   'celo': 42220,
   'celo-testnet': 44787,
   'arbitrum': 42161,
-  'arbitrum-goerli': 421613,
+  'arbitrum-goerli': 421613
 })
 
 /**
@@ -68,6 +68,8 @@ export const INFURA_CHAIN_IDS = Object.freeze([
   1, 3, 4, 5, 42,
   // Polygon
   137, 80001,
+  // Avalanche
+  43114, 43113,
   // Optimism
   10, 420,
   // Arbitrum
