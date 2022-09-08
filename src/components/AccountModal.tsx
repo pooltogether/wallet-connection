@@ -3,14 +3,13 @@ import {
   SquareButton,
   BottomSheet,
   SquareButtonTheme,
-  BlockExplorerLink,
   SquareButtonSize,
   ThemedClipSpinner,
   NetworkIcon,
   WalletIcon
 } from '@pooltogether/react-components'
 import React from 'react'
-import { useAccount, useDisconnect, useNetwork } from 'wagmi'
+import { useAccount, useDisconnect } from 'wagmi'
 import { i18nTranslate, Transaction } from '../interfaces'
 import { getChainNameByChainId } from '../utilities/getChainNameByChainId'
 import { useUsersTransactions } from '../hooks/useUsersTransactions'
@@ -19,6 +18,8 @@ import { AccountAvatar } from './AccountAvatar'
 import { useUpdateAtom } from 'jotai/utils'
 import { transactionsAtom } from '../atoms'
 import { AccountName } from './AccountName'
+import { useWalletChainId } from '../hooks/useWalletChainId'
+import { BlockExplorerLink } from './BlockExplorerLink'
 
 interface AccountModalProps {
   isOpen: boolean
@@ -29,18 +30,15 @@ interface AccountModalProps {
 
 export const AccountModal: React.FC<AccountModalProps> = (props) => {
   const { isOpen, closeModal } = props
-  const account = useAccount()
+  const { address, connector } = useAccount()
   const { disconnect } = useDisconnect()
-  const { chain } = useNetwork()
-  const address = account?.address
-  const connector = account?.connector
   const connectorName = connector?.name
-  const chainId = chain?.id
+  const chainId = useWalletChainId()
   const transactions = useUsersTransactions(address)
   const filteredTransactions = transactions?.slice(transactions.length - 5).reverse()
   const setTransactions = useUpdateAtom(transactionsAtom)
 
-  if (!account) {
+  if (!address) {
     return (
       <BottomSheet
         label='account-modal'

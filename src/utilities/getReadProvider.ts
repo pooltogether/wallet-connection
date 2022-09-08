@@ -3,6 +3,7 @@ import { CHAIN_ID, INFURA_CHAIN_IDS } from '../constants'
 import { ProviderApiKeys } from '../interfaces'
 import { getRpcUrl } from './getRpcUrl'
 import { getChain } from './getChain'
+import { PT_RPC_PROXY } from '@pooltogether/utilities'
 
 /**
  * Creates a provider for the given chain id if available.

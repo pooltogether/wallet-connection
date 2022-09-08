@@ -2063,18 +2063,6 @@
     lodash.merge "^4.6.2"
     zen-observable-ts "^0.8.20"
 
-"@pooltogether/evm-chains-extended@^0.7.2-beta.4":
-  version "0.7.2-beta.4"
-  resolved "https://registry.yarnpkg.com/@pooltogether/evm-chains-extended/-/evm-chains-extended-0.7.2-beta.4.tgz#3f7e8e3c7636364f095130eb459bfc84d90f3c09"
-  integrity sha512-N49xdd9Jrixjvq1LsU5CVUiBNWxRX5q/0jLwYIXumy2ppXe8LreKLSJm6X6jrElSlPXTVgmlEOPTk6sV783Xig==
-  dependencies:
-    evm-chains "^0.2.0"
-
-"@pooltogether/hooks@1.11.0-beta.4":
-  version "1.11.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.11.0-beta.4.tgz#e5595c446a007dee46bb73980e2a225a4899a502"
-  integrity sha512-lq8QgNH9LIKFGhw6ix1MUMoI6T34K2bC3H3271ILvvwyrynNP4uDpUjXsNW4vsNiCW+ZFIFzXjA2ouQBSH6lnQ==
-
 "@pooltogether/react-components@1.19.0-beta.4":
   version "1.19.0-beta.4"
   resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.19.0-beta.4.tgz#d4e31d3884b3d8eab6a80e8ed8542ca3035f48f5"
@@ -2097,10 +2085,10 @@
     react-toastify "^8.2.0"
     react-tooltip "^4.2.21"
 
-"@pooltogether/utilities@0.5.2-beta.2":
-  version "0.5.2-beta.2"
-  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.5.2-beta.2.tgz#ecc6d271b9eea03633fd6d39220c98288fc8dc6b"
-  integrity sha512-VheMyIY8GHgiSBcfEYCdDR9xliQmvXg7TkCaAiMDVfuoVkk57W3IRQTAtm27I3dpR+SwnZmRoeUjlbUtaQaOmg==
+"@pooltogether/utilities@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.6.1.tgz#a0ee2eac626eb1b64f65ce42cf99ba2a9407a6ea"
+  integrity sha512-gz214RgqF9busqa7uCkyxbnPJW5AeFeG/F0kTIrdH8Tbi00EL/hBmauKUMx7iDmhAUIbD2w2vLMjbzKn7gSZOw==
 
 "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
   version "2.11.4"
@@ -4927,10 +4915,10 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-beautiful-react-hooks@^1.0.2:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/beautiful-react-hooks/-/beautiful-react-hooks-1.2.0.tgz#b29ed1a2f8e8de803d9a774c1c1d2c831f2d7100"
-  integrity sha512-Ynsdw4VMg2gR3SGyvZCbDbVGGW7lDReCEwowQhipl7uopdVRWAiZx+dyNALogd+nFrU/8EdqyjXOfiSi078PhA==
+beautiful-react-hooks@^3.6.2:
+  version "3.11.1"
+  resolved "https://registry.yarnpkg.com/beautiful-react-hooks/-/beautiful-react-hooks-3.11.1.tgz#2bcbf726a77993b3f454ff48867a4cced3d213fd"
+  integrity sha512-uXeli3YYvo15+5xFvRm/rpBtVQ1SrelVTDKPZAlBWhaY8FXQegjKpWC1TjUL5noBMtWjDtx/rPaoCNlRtqJO0g==
   dependencies:
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"
@@ -7471,11 +7459,6 @@ events@^3.0.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
-
-evm-chains@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/evm-chains/-/evm-chains-0.2.0.tgz#401354aa2b474bb9b34e796d328f281e67d07349"
-  integrity sha512-iMpFpmKT9VydfIUpRFoQHNzLdZ3WSNagiq6PABqWDSRwAA9OW+dpKYczkvJ/WSUesGWgcfzYoKRvfusn/9bBYA==
 
 evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
   version "1.0.3"

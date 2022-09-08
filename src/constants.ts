@@ -5,8 +5,6 @@ import { ProviderApiKeys } from './interfaces'
  * Global API keys, initialized through initProviderApiKeys
  */
 export const RPC_API_KEYS: ProviderApiKeys = {
-  alchemy: undefined,
-  etherscan: undefined,
   infura: undefined
 }
 

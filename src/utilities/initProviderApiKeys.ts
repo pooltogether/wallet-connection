@@ -6,7 +6,5 @@ import { ProviderApiKeys } from '../interfaces'
  * @param apiKeys
  */
 export const initProviderApiKeys = (apiKeys: ProviderApiKeys) => {
-  RPC_API_KEYS.alchemy = apiKeys.alchemy
-  RPC_API_KEYS.etherscan = apiKeys.etherscan
   RPC_API_KEYS.infura = apiKeys.infura
 }

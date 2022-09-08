@@ -7,8 +7,8 @@ import { v4 as uuid } from 'uuid'
 import { TransactionState, TransactionStatus } from '../constants'
 import { useUsersAddress } from './useUsersAddress'
 import { useWalletChainId } from './useWalletChainId'
-import { TransactionToast, TransactionToastStatus } from '@pooltogether/react-components'
 import React from 'react'
+import { TransactionToast, TransactionToastStatus } from '../components/TransactionToast'
 
 /**
  * @param log optional error logger

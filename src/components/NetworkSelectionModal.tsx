@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useWalletChainId } from '../hooks/useWalletChainId'
 import { BottomSheet, NetworkIcon, ThemedClipSpinner } from '@pooltogether/react-components'
 import classNames from 'classnames'
-
 import { Chain, useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 import { getChainNameByChainId } from '../utilities/getChainNameByChainId'
 import { i18nTranslate } from '@pooltogether/react-components/dist/types'
@@ -65,9 +64,7 @@ export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (prop
         {errorMessage && <p className='text-pt-red-light'>{errorMessage}</p>}
         <p className='text-xxxs'>
           {t?.('currentlyConnectedTo') || 'Currently connected to'}
-          <b className={classNames('ml-1', { 'text-pt-red-light': chain.unsupported })}>
-            {chain.name || getChainNameByChainId(chain.id)}
-          </b>
+          <b className={classNames('ml-1')}>{chain.name || getChainNameByChainId(chain.id)}</b>
         </p>
       </div>
     </BottomSheet>

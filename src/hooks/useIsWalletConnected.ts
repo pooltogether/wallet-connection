@@ -5,6 +5,6 @@ import { useAccount } from 'wagmi'
  * @returns
  */
 export const useIsWalletConnected = () => {
-  const { connector } = useAccount()
-  return Boolean(connector)
+  const { address, status } = useAccount()
+  return !!address && status === 'connected'
 }
