@@ -1,11 +1,5 @@
-import {
-  BaseProvider,
-  AlchemyProvider,
-  InfuraProvider,
-  EtherscanProvider,
-  JsonRpcProvider
-} from '@ethersproject/providers'
-import { ALCHEMY_CHAIN_IDS, CHAIN_ID, ETHERSCAN_CHAIN_IDS, INFURA_CHAIN_IDS } from '../constants'
+import { BaseProvider, InfuraProvider, JsonRpcProvider } from '@ethersproject/providers'
+import { CHAIN_ID, INFURA_CHAIN_IDS } from '../constants'
 import { ProviderApiKeys } from '../interfaces'
 import { getRpcUrl, PT_RPC_PROXY } from './getRpcUrl'
 import { getChain } from './getChain'
@@ -19,21 +13,15 @@ import { getChain } from './getChain'
  * @returns
  */
 export const getReadProvider = (chainId: number, apiKeys?: ProviderApiKeys): BaseProvider => {
-  const alchemyApiKey = apiKeys?.alchemy
   const infuraApiKey = apiKeys?.infura
-  const etherscanApiKey = apiKeys?.etherscan
-
-  if (!!PT_RPC_PROXY[chainId]) {
-    return new JsonRpcProvider(PT_RPC_PROXY[chainId], chainId)
-  }
 
   try {
-    if (!!alchemyApiKey && ALCHEMY_CHAIN_IDS.includes(chainId)) {
-      return new AlchemyProvider(chainId, alchemyApiKey)
-    } else if (!!infuraApiKey && INFURA_CHAIN_IDS.includes(chainId)) {
+    if (!!infuraApiKey && INFURA_CHAIN_IDS.includes(chainId)) {
       return new InfuraProvider(chainId, infuraApiKey)
-    } else if (!!etherscanApiKey && ETHERSCAN_CHAIN_IDS.includes(chainId)) {
-      return new EtherscanProvider(chainId, etherscanApiKey)
+    }
+
+    if (!!PT_RPC_PROXY[chainId]) {
+      return new JsonRpcProvider(PT_RPC_PROXY[chainId], chainId)
     }
 
     const chainData = getChain(chainId)

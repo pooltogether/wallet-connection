@@ -2063,10 +2063,10 @@
     lodash.merge "^4.6.2"
     zen-observable-ts "^0.8.20"
 
-"@pooltogether/evm-chains-extended@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@pooltogether/evm-chains-extended/-/evm-chains-extended-0.7.0.tgz#c802ab29e7bc68bde4a9059e1c2565734105de72"
-  integrity sha512-sfq/u3bNUJFsDrroZuUMY6Mtdiaotpw4Lj9e0zscfdu6yksVfQu0lZmItSE4oYs1oRyUyanGBDKJ0D/2DAABxw==
+"@pooltogether/evm-chains-extended@^0.7.2-beta.4":
+  version "0.7.2-beta.4"
+  resolved "https://registry.yarnpkg.com/@pooltogether/evm-chains-extended/-/evm-chains-extended-0.7.2-beta.4.tgz#3f7e8e3c7636364f095130eb459bfc84d90f3c09"
+  integrity sha512-N49xdd9Jrixjvq1LsU5CVUiBNWxRX5q/0jLwYIXumy2ppXe8LreKLSJm6X6jrElSlPXTVgmlEOPTk6sV783Xig==
   dependencies:
     evm-chains "^0.2.0"
 
@@ -2075,10 +2075,10 @@
   resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.11.0-beta.4.tgz#e5595c446a007dee46bb73980e2a225a4899a502"
   integrity sha512-lq8QgNH9LIKFGhw6ix1MUMoI6T34K2bC3H3271ILvvwyrynNP4uDpUjXsNW4vsNiCW+ZFIFzXjA2ouQBSH6lnQ==
 
-"@pooltogether/react-components@1.19.0-beta.1":
-  version "1.19.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.19.0-beta.1.tgz#f71d56bb9f052c08359751adf03c4cf38699cddc"
-  integrity sha512-wOSu6dnDGoQ8HkEXJ0N3C09cYPiPr8/4Lf6zbVnWRo3b1luAF0EX3rhb0r/SsF5t0EqQ7MZ83ieFPktb4qUPvg==
+"@pooltogether/react-components@1.19.0-beta.4":
+  version "1.19.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.19.0-beta.4.tgz#d4e31d3884b3d8eab6a80e8ed8542ca3035f48f5"
+  integrity sha512-ZPeJc+ueOj7rm4bom606HmZ3qCX1xOByKKXsPQW8xmw49rU0CO1WsU1ZaaIIdHzqCrKbdpeZqBn4+Pct3WEGlQ==
   dependencies:
     "@download/blockies" "^1.0.3"
     "@reach/dialog" "^0.15.0"
@@ -2097,10 +2097,10 @@
     react-toastify "^8.2.0"
     react-tooltip "^4.2.21"
 
-"@pooltogether/utilities@0.5.2-beta.1":
-  version "0.5.2-beta.1"
-  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.5.2-beta.1.tgz#65a5a1b47a3b163947c1a06331d7c5273d0b6b4f"
-  integrity sha512-v+XKCxFwyF6wc3xS5rwo2A+ZFmeY1aXMONax3SRD7/XMKC0C79ZUzEebK9k0uaSt+k2k0NAXp3Uv2Ug6I9lZSg==
+"@pooltogether/utilities@0.5.2-beta.2":
+  version "0.5.2-beta.2"
+  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.5.2-beta.2.tgz#ecc6d271b9eea03633fd6d39220c98288fc8dc6b"
+  integrity sha512-VheMyIY8GHgiSBcfEYCdDR9xliQmvXg7TkCaAiMDVfuoVkk57W3IRQTAtm27I3dpR+SwnZmRoeUjlbUtaQaOmg==
 
 "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
   version "2.11.4"

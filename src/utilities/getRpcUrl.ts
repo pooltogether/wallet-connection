@@ -1,6 +1,6 @@
-import { AlchemyProvider, InfuraProvider } from '@ethersproject/providers'
+import { InfuraProvider } from '@ethersproject/providers'
 import { getNetwork } from '@ethersproject/networks'
-import { ALCHEMY_CHAIN_IDS, CHAIN_ID, INFURA_CHAIN_IDS } from '../constants'
+import { CHAIN_ID, INFURA_CHAIN_IDS } from '../constants'
 import { ProviderApiKeys } from '../interfaces'
 import { getChain } from './getChain'
 
@@ -10,8 +10,7 @@ export const PT_RPC_PROXY = Object.freeze({
   [CHAIN_ID.optimism]: 'https://optimism-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
   [CHAIN_ID['optimism-goerli']]:
     'https://optimism-goerli-web3-provider-proxy.pooltogether-api.workers.dev/',
-  [CHAIN_ID.arbitrum]:
-    'https://arbitrum-web3-provider-proxy.pooltogether-api.workers.dev/',
+  [CHAIN_ID.arbitrum]: 'https://arbitrum-web3-provider-proxy.pooltogether-api.workers.dev/',
   [CHAIN_ID['arbitrum-goerli']]:
     'https://arbitrum-goerli-web3-provider-proxy.pooltogether-api.workers.dev/',
   [CHAIN_ID.polygon]: 'https://polygon-mainnet-web3-provider-proxy.pooltogether-api.workers.dev/',
@@ -29,22 +28,18 @@ export const PT_RPC_PROXY = Object.freeze({
  * @param apiKeys
  */
 export const getRpcUrl = (chainId: number, apiKeys?: ProviderApiKeys): string => {
-  const alchemyApiKey = apiKeys?.alchemy
   const infuraApiKey = apiKeys?.infura
 
-  if (!!PT_RPC_PROXY[chainId]) return PT_RPC_PROXY[chainId]
-
   try {
-    if (!!alchemyApiKey && ALCHEMY_CHAIN_IDS.includes(chainId)) {
-      const connectionInfo = AlchemyProvider.getUrl(getNetwork(chainId), alchemyApiKey)
-      return connectionInfo.url
-    } else if (!!infuraApiKey && INFURA_CHAIN_IDS.includes(chainId)) {
+    if (!!infuraApiKey && INFURA_CHAIN_IDS.includes(chainId)) {
       const connectionInfo = InfuraProvider.getUrl(
         getNetwork(chainId),
         typeof infuraApiKey === 'string' ? { projectId: infuraApiKey } : infuraApiKey
       )
       return connectionInfo.url
     }
+
+    if (!!PT_RPC_PROXY[chainId]) return PT_RPC_PROXY[chainId]
 
     const chainData = getChain(chainId)
     const rpcUrl = !!chainData?.rpcUrls ? Object.values(chainData.rpcUrls)[0] : null
