@@ -32,6 +32,9 @@ export const getRpcUrl = (chainId: number, apiKeys?: ProviderApiKeys): string =>
 
   try {
     if (!!infuraApiKey && INFURA_CHAIN_IDS.includes(chainId)) {
+      // if (chainId === CHAIN_ID.avalanche) {
+      //   return `https://avalanche-mainnet.infura.io/v3/${infuraApiKey}`
+      // }
       const connectionInfo = InfuraProvider.getUrl(
         getNetwork(chainId),
         typeof infuraApiKey === 'string' ? { projectId: infuraApiKey } : infuraApiKey
@@ -39,7 +42,7 @@ export const getRpcUrl = (chainId: number, apiKeys?: ProviderApiKeys): string =>
       return connectionInfo.url
     }
 
-    if (!!PT_RPC_PROXY[chainId]) return PT_RPC_PROXY[chainId]
+    // if (!!PT_RPC_PROXY[chainId]) return PT_RPC_PROXY[chainId]
 
     const chainData = getChain(chainId)
     const rpcUrl = !!chainData?.rpcUrls ? Object.values(chainData.rpcUrls)[0] : null

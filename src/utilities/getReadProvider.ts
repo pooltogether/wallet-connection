@@ -1,7 +1,7 @@
 import { BaseProvider, InfuraProvider, JsonRpcProvider } from '@ethersproject/providers'
 import { CHAIN_ID, INFURA_CHAIN_IDS } from '../constants'
 import { ProviderApiKeys } from '../interfaces'
-import { getRpcUrl, PT_RPC_PROXY } from './getRpcUrl'
+import { getRpcUrl } from './getRpcUrl'
 import { getChain } from './getChain'
 
 /**
@@ -17,12 +17,15 @@ export const getReadProvider = (chainId: number, apiKeys?: ProviderApiKeys): Bas
 
   try {
     if (!!infuraApiKey && INFURA_CHAIN_IDS.includes(chainId)) {
+      // if (chainId === CHAIN_ID.avalanche) {
+      //   return new JsonRpcProvider(`https://avalanche-mainnet.infura.io/v3/${infuraApiKey}`)
+      // }
       return new InfuraProvider(chainId, infuraApiKey)
     }
 
-    if (!!PT_RPC_PROXY[chainId]) {
-      return new JsonRpcProvider(PT_RPC_PROXY[chainId], chainId)
-    }
+    // if (!!PT_RPC_PROXY[chainId]) {
+    //   return new JsonRpcProvider(PT_RPC_PROXY[chainId], chainId)
+    // }
 
     const chainData = getChain(chainId)
     if (!!chainData) {

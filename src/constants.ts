@@ -39,28 +39,6 @@ export const CHAIN_ID = Object.freeze({
 })
 
 /**
- * Chains supported by Alchemy
- */
-export const ALCHEMY_CHAIN_IDS = Object.freeze([
-  // Ethereum
-  1, 3, 4, 5, 42,
-  // Polygon
-  137, 80001,
-  // Optimism
-  10, 420,
-  // Arbitrum
-  42161, 421613
-])
-
-/**
- * Chains supported by Etherscan
- */
-export const ETHERSCAN_CHAIN_IDS = Object.freeze([
-  // Ethereum
-  1, 3, 4, 5, 42
-])
-
-/**
  * Chains supported by Infura
  */
 export const INFURA_CHAIN_IDS = Object.freeze([
@@ -69,7 +47,7 @@ export const INFURA_CHAIN_IDS = Object.freeze([
   // Polygon
   137, 80001,
   // Avalanche
-  43114, 43113,
+  // 43114,
   // Optimism
   10, 420,
   // Arbitrum
