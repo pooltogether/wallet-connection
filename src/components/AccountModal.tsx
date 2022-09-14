@@ -26,10 +26,11 @@ interface AccountModalProps {
   TosDisclaimer: React.ReactNode
   closeModal: () => void
   t?: i18nTranslate
+  mainnetRpcUrl?: string | string[]
 }
 
 export const AccountModal: React.FC<AccountModalProps> = (props) => {
-  const { isOpen, closeModal } = props
+  const { isOpen, closeModal, mainnetRpcUrl } = props
   const { address, connector } = useAccount()
   const { disconnect } = useDisconnect()
   const connectorName = connector?.name
@@ -70,7 +71,7 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
               chainId={chainId}
               copyable
             >
-              <AccountName address={address} />
+              <AccountName address={address} rpcUrl={mainnetRpcUrl} />
             </BlockExplorerLink>
           </div>
           <div className='space-x-2 opacity-80 flex items-center'>

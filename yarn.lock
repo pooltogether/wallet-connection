@@ -2048,11 +2048,6 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@pooltogether/current-pool-data@^3.7.2":
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/@pooltogether/current-pool-data/-/current-pool-data-3.7.2.tgz#c3050a746c299836e8835eab0ac718c0ecc89b08"
-  integrity sha512-UB9DRhck7t47Xz3vUCy39E5EB+dm6PeOXf9UEi/aru2hfFk0RVbSOcsCaB0bJ3lM1yK4DYW2hEGFImxrjgGVIQ==
-
 "@pooltogether/etherplex@^1.1.2":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@pooltogether/etherplex/-/etherplex-1.1.4.tgz#d7584d43f82bc22630a9068f6c69e9a049740621"
@@ -2063,10 +2058,10 @@
     lodash.merge "^4.6.2"
     zen-observable-ts "^0.8.20"
 
-"@pooltogether/react-components@1.19.0-beta.4":
-  version "1.19.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.19.0-beta.4.tgz#d4e31d3884b3d8eab6a80e8ed8542ca3035f48f5"
-  integrity sha512-ZPeJc+ueOj7rm4bom606HmZ3qCX1xOByKKXsPQW8xmw49rU0CO1WsU1ZaaIIdHzqCrKbdpeZqBn4+Pct3WEGlQ==
+"@pooltogether/react-components@1.20.0":
+  version "1.20.0"
+  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.20.0.tgz#d1b2a4894f0f9835f15071b4b92c82bb9eae9f29"
+  integrity sha512-1ipI2kEBPTHN5uXGzl2xUh8uynm/KaGWU4ESM2g0Ncovya3JsR7WzR4iXRUnp1ueNGr8slX6CKx7kSu5ndBnZg==
   dependencies:
     "@download/blockies" "^1.0.3"
     "@reach/dialog" "^0.15.0"
@@ -2085,10 +2080,10 @@
     react-toastify "^8.2.0"
     react-tooltip "^4.2.21"
 
-"@pooltogether/utilities@0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.6.1.tgz#a0ee2eac626eb1b64f65ce42cf99ba2a9407a6ea"
-  integrity sha512-gz214RgqF9busqa7uCkyxbnPJW5AeFeG/F0kTIrdH8Tbi00EL/hBmauKUMx7iDmhAUIbD2w2vLMjbzKn7gSZOw==
+"@pooltogether/utilities@0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@pooltogether/utilities/-/utilities-0.6.2.tgz#71a4e6dd56c6f0a03feea95b4f3a1b8eeee04329"
+  integrity sha512-vGqf8wqdKbP3Sk0xsF8W6wkRJgyPEGCIyeH1YM3kPjzNn4mCMAc08tGlBtq0CvjkvaNwWgLAMv2/L7Jh//wbbw==
 
 "@popperjs/core@^2.5.4", "@popperjs/core@^2.6.0":
   version "2.11.4"
@@ -14592,10 +14587,10 @@ typescript@^3.7.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.10.tgz#70f3910ac7a51ed6bef79da7800690b19bf778b8"
   integrity sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==
 
-typescript@^4.4.4:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.2.tgz#fe12d2727b708f4eef40f51598b3398baa9611d4"
-  integrity sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==
+typescript@^4.7.4:
+  version "4.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.3.tgz#d59344522c4bc464a65a730ac695007fdb66dd88"
+  integrity sha512-goMHfm00nWPa8UvR/CPSvykqf6dVV8x/dp0c5mFTMTIu0u0FlGWRioyy7Nn0PGAdHxpJZnuO/ut+PpQ8UiHAig==
 
 ua-parser-js@^0.7.24, ua-parser-js@^0.7.30:
   version "0.7.31"

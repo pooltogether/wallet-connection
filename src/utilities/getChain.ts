@@ -3,8 +3,6 @@ import { Chain } from 'wagmi'
 
 /**
  * Builds objects with PoolTogether preferred names and RPC urls.
- * DOES NOT use RPC urls that include API keys.
- * Used for wallet connection & adding chains to users wallets.
  * @param chainId
  * @returns a WAGMI Chain data type
  */

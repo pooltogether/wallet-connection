@@ -6,7 +6,6 @@ import {
 } from '@pooltogether/react-components'
 import React, { useState } from 'react'
 import { useAtom } from 'jotai'
-
 import { AccountModal } from './AccountModal'
 import classNames from 'classnames'
 import { Chain, useAccount } from 'wagmi'
@@ -27,6 +26,7 @@ export interface FullWalletConnectionProps {
   TosDisclaimer: React.ReactNode
   theme?: SquareButtonTheme
   t?: i18nTranslate
+  mainnetRpcUrl?: string | string[]
 }
 
 /**
@@ -43,7 +43,8 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
     pendingIconSizeClassName,
     t,
     theme,
-    TosDisclaimer
+    TosDisclaimer,
+    mainnetRpcUrl
   } = props
   const { address, connector } = useAccount()
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false)
@@ -79,7 +80,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
       </button>
     )
   } else if (connected && !!address) {
-    networkButton = <NetworkSelectionButton chains={chains} />
+    networkButton = <NetworkSelectionButton chains={chains} sizeClassName={iconSizeClassName} />
     button = (
       <button
         onClick={() => setIsAccountModalOpen(true)}
@@ -107,6 +108,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         closeModal={() => setIsAccountModalOpen(false)}
         isOpen={isAccountModalOpen}
         TosDisclaimer={TosDisclaimer}
+        mainnetRpcUrl={mainnetRpcUrl}
       />
       <WalletConnectionModal
         t={t}
@@ -120,7 +122,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
 
 FullWalletConnectionButton.defaultProps = {
   className: 'flex space-x-4 items-center',
-  iconSizeClassName: 'w-5 h-5',
+  iconSizeClassName: 'w-6 h-6',
   pendingIconSizeClassName: 'w-4 h-4',
   theme: SquareButtonTheme.teal
 }

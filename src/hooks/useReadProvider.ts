@@ -1,14 +1,12 @@
 import { useMemo } from 'react'
 import { getReadProvider } from '../utilities/getReadProvider'
-import { ProviderApiKeys } from '../interfaces'
 
 /**
- * Creates and memoizes a provider for the given chain id if available.
- * Attempts to use API keys for RPC providers first.
- * Falls back to mainnet if chain id provided is not supported.
+ * Memoizes the Fallback provider to maintain state in the future
  * @param chainId
- * @param apiKeys
+ * @param _rpcUrl
  * @returns
  */
-export const useReadProvider = (chainId: number, apiKeys?: ProviderApiKeys) =>
-  useMemo(() => getReadProvider(chainId, apiKeys), [chainId])
+export const useReadProvider = (chainId: number, _rpcUrl?: string | string[]) => {
+  return useMemo(() => getReadProvider(chainId, _rpcUrl), [chainId, _rpcUrl])
+}

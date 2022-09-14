@@ -52,7 +52,7 @@ export const NetworkSelectionModal: React.FC<NetworkSelectionModalProps> = (prop
       <ul className='space-y-2 mx-auto max-w-sm'>
         {chains.map((chain) => (
           <NetworkSelectionButton
-            key={chain.id}
+            key={`network-select-${chain.id}`}
             chain={chain}
             onClick={() => selectNetwork(chain.id)}
             pending={isLoading}

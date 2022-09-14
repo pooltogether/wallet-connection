@@ -12,11 +12,12 @@ import { getChainColorByChainId } from '../utilities/getChainColorByChainId'
 export interface NetworkSelectionProps {
   chains: Chain[]
   className?: string
+  sizeClassName?: string
   t?: i18nTranslate
 }
 
 export const NetworkSelectionButton: React.FC<NetworkSelectionProps> = (props) => {
-  const { chains, className, t } = props
+  const { chains, className, sizeClassName, t } = props
   const { connector } = useAccount()
   const chainId = useWalletChainId()
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +30,7 @@ export const NetworkSelectionButton: React.FC<NetworkSelectionProps> = (props) =
         className={classNames(className, 'flex space-x-2 items-center')}
         onClick={() => setIsOpen(true)}
       >
-        <NetworkIcon chainId={chainId} />
+        <NetworkIcon chainId={chainId} sizeClassName={sizeClassName} />
         <span
           className={`hidden sm:block font-bold hover:opacity-70 transition`}
           style={{ color: getChainColorByChainId(chainId) }}

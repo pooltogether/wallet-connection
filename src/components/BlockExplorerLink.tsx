@@ -89,22 +89,22 @@ BlockExplorerLink.defaultProps = {
   iconClassName: 'h-4 w-4 ml-1'
 }
 
-export const formatBlockExplorerTxUrl = (tx, networkId) => {
+export const formatBlockExplorerTxUrl = (tx: string, chainId: number) => {
   try {
-    const blockExplorerUrl = getBlockExplorerUrl(Number(networkId))
+    const blockExplorerUrl = getBlockExplorerUrl(chainId)
     return `${blockExplorerUrl}/tx/${tx}`
   } catch (e) {
-    console.error('Chain Id not supported', { chainId: Number(networkId) })
+    console.error('Chain Id not supported', { chainId })
     return null
   }
 }
 
-export const formatBlockExplorerAddressUrl = (address, networkId) => {
+export const formatBlockExplorerAddressUrl = (address: string, chainId: number) => {
   try {
-    const blockExplorerUrl = getBlockExplorerUrl(Number(networkId))
+    const blockExplorerUrl = getBlockExplorerUrl(chainId)
     return `${blockExplorerUrl}/address/${address}`
   } catch (e) {
-    console.error('Chain Id not supported', { chainId: Number(networkId) })
+    console.error('Chain Id not supported', { chainId })
     return null
   }
 }

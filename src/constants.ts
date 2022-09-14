@@ -1,12 +1,6 @@
 import { allChains, Chain } from 'wagmi'
-import { ProviderApiKeys } from './interfaces'
 
-/**
- * Global API keys, initialized through initProviderApiKeys
- */
-export const RPC_API_KEYS: ProviderApiKeys = {
-  infura: undefined
-}
+export const WC_RPC_URLS: { [chainId: number]: string | string[] } = {}
 
 /**
  * Constant for chain ids
@@ -63,6 +57,7 @@ const CUSTOM_CHAINS: Chain[] = [
     // @ts-ignore
     rpcUrls: {
       celohttps: 'https://alfajores-forno.celo-testnet.org',
+      default: 'https://alfajores-forno.celo-testnet.org',
       celowss: 'wss://alfajores-forno.celo-testnet.org/ws'
     },
     // @ts-ignore
@@ -76,7 +71,7 @@ const CUSTOM_CHAINS: Chain[] = [
     name: 'Celo',
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
     // @ts-ignore
-    rpcUrls: { forno: 'https://forno.celo.org' },
+    rpcUrls: { forno: 'https://forno.celo.org', default: 'https://forno.celo.org' },
     // @ts-ignore
     blockExplorers: { celo: { name: 'Celo Explorer', url: 'https://explorer.celo.org/' } },
     testnet: false
@@ -91,6 +86,7 @@ const CUSTOM_CHAINS: Chain[] = [
     },
     // @ts-ignore
     rpcUrls: {
+      default: 'https://bsc-dataseed.binance.org/',
       bsc1: 'https://bsc-dataseed.binance.org/',
       bsc2: 'https://bsc-dataseed1.defibit.io/',
       bsc3: 'https://bsc-dataseed1.ninicoin.io/'
@@ -146,7 +142,7 @@ const CHAIN_NAME_OVERRIDE: {
 })
 
 /**
- *
+ * In case we want to inject a public RPC URL for a chain into wagmi Chain objects, we can do that here.
  */
 const CHAIN_RPC_OVERRIDES: {
   [chainId: number]: { [key: string]: string }
@@ -174,7 +170,7 @@ const editRpcUrl = (chain: Chain) => {
 }
 
 /**
- *
+ * Returns a list of all chains from wagmi augmented with PT preferred names and RPC URLs.
  */
 export const ALL_CHAINS: Chain[] = [...allChains, ...CUSTOM_CHAINS]
   .map(editChainName)

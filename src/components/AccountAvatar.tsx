@@ -1,15 +1,17 @@
 import classNames from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
-import { useEnsAvatar } from '../hooks/useEnsAvatar'
 import { renderIcon } from '@download/blockies'
+import { useEnsAvatar } from 'wagmi'
+import { CHAIN_ID } from '../constants'
 
 export const AccountAvatar: React.FC<{
   address: string
   className?: string
   sizeClassName?: string
+  chainId?: number
 }> = (props) => {
-  const { address, className, sizeClassName } = props
-  const { data: src } = useEnsAvatar(address)
+  const { address, className, sizeClassName, chainId } = props
+  const { data: src } = useEnsAvatar({ addressOrName: address, chainId })
 
   if (src) {
     return <img src={src} className={classNames(className, sizeClassName)} />
@@ -22,8 +24,9 @@ export const AccountAvatar: React.FC<{
 }
 
 AccountAvatar.defaultProps = {
-  sizeClassName: 'w-5 h-5',
-  className: 'rounded-full overflow-hidden'
+  sizeClassName: 'w-7 h-7 sm:w-8 sm:h-8',
+  className: 'rounded-full overflow-hidden',
+  chainId: CHAIN_ID.mainnet
 }
 
 const BlockieIdenticon = ({ address, alt, className }) => {

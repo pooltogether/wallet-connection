@@ -3,10 +3,6 @@ import { TransactionState, TransactionStatus } from './constants'
 
 export type i18nTranslate = (i18nKey: string, data?: { [key: string]: string }) => string
 
-export interface ProviderApiKeys {
-  infura: string | { projectId: string; projectSecret: string }
-}
-
 export interface Transaction {
   id: string
   name: string

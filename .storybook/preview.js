@@ -1,7 +1,6 @@
 import { Provider as WagmiProvider } from 'wagmi'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-// import { WalletLinkConnector } from 'wagmi/connectors/walletLink'
 import { Provider as JotaiProvider } from 'jotai'
 import { ThemeContext, ThemeContextProvider } from '@pooltogether/react-components'
 import React, { useContext, Suspense } from 'react'
@@ -29,13 +28,6 @@ const connectors = ({ chainId }) => {
         qrcode: true
       }
     })
-    // new WalletLinkConnector({
-    //   chains,
-    //   options: {
-    //     appName: 'PoolTogether',
-    //     jsonRpcUrl: getRpcUrl(chainId || CHAIN_ID.mainnet)
-    //   }
-    // })
   ]
 }
 
