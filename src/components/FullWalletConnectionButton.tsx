@@ -26,7 +26,6 @@ export interface FullWalletConnectionProps {
   TosDisclaimer: React.ReactNode
   theme?: SquareButtonTheme
   t?: i18nTranslate
-  mainnetRpcUrl?: string | string[]
 }
 
 /**
@@ -43,8 +42,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
     pendingIconSizeClassName,
     t,
     theme,
-    TosDisclaimer,
-    mainnetRpcUrl
+    TosDisclaimer
   } = props
   const { address, connector } = useAccount()
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false)
@@ -108,7 +106,6 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         closeModal={() => setIsAccountModalOpen(false)}
         isOpen={isAccountModalOpen}
         TosDisclaimer={TosDisclaimer}
-        mainnetRpcUrl={mainnetRpcUrl}
       />
       <WalletConnectionModal
         t={t}
