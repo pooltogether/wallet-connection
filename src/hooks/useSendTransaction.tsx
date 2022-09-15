@@ -136,19 +136,15 @@ export const useSendTransaction = (
           status: TransactionStatus.cancelled,
           state: TransactionState.complete
         })
-        toast.error({
-          render() {
-            return (
-              <TransactionToast
-                message={name}
-                chainId={chainId}
-                status={TransactionToastStatus.cancelled}
-                hash={receipt?.transactionHash}
-                t={t}
-              />
-            )
-          }
-        })
+        toast.error(
+          <TransactionToast
+            message={name}
+            chainId={chainId}
+            status={TransactionToastStatus.cancelled}
+            hash={receipt?.transactionHash}
+            t={t}
+          />
+        )
       } else if (e?.error?.message) {
         const errorDetails = getErrorDetails(e.error.message)
 
@@ -159,19 +155,15 @@ export const useSendTransaction = (
           state: TransactionState.complete
         })
         const errorMessage = `Transaction failed - ${errorDetails}`
-        toast.error({
-          render() {
-            return (
-              <TransactionToast
-                message={errorMessage}
-                chainId={chainId}
-                status={TransactionToastStatus.cancelled}
-                hash={receipt?.transactionHash}
-                t={t}
-              />
-            )
-          }
-        })
+        toast.error(
+          <TransactionToast
+            message={errorMessage}
+            chainId={chainId}
+            status={TransactionToastStatus.cancelled}
+            hash={receipt?.transactionHash}
+            t={t}
+          />
+        )
         log?.(errorMessage)
       } else {
         updateTransaction({
@@ -181,19 +173,15 @@ export const useSendTransaction = (
           state: TransactionState.complete
         })
         const errorMessage = `Transaction failed - Unknown error`
-        toast.error({
-          render() {
-            return (
-              <TransactionToast
-                message={errorMessage}
-                chainId={chainId}
-                status={TransactionToastStatus.cancelled}
-                hash={receipt?.transactionHash}
-                t={t}
-              />
-            )
-          }
-        })
+        toast.error(
+          <TransactionToast
+            message={errorMessage}
+            chainId={chainId}
+            status={TransactionToastStatus.cancelled}
+            hash={receipt?.transactionHash}
+            t={t}
+          />
+        )
         log?.(errorMessage)
       }
     }

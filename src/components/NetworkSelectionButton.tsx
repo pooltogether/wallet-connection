@@ -30,7 +30,7 @@ export const NetworkSelectionButton: React.FC<NetworkSelectionProps> = (props) =
         className={classNames(className, 'flex space-x-2 items-center')}
         onClick={() => setIsOpen(true)}
       >
-        <NetworkIcon chainId={chainId} sizeClassName={sizeClassName} />
+        <NetworkIcon chainId={chainId} sizeClassName={sizeClassName} className='shadow' />
         <span
           className={`hidden sm:block font-bold hover:opacity-70 transition`}
           style={{ color: getChainColorByChainId(chainId) }}

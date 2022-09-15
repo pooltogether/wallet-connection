@@ -87,7 +87,11 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
           'flex text-pt-teal hover:text-inverse transition-colors font-semibold items-center space-x-2'
         )}
       >
-        <AccountAvatar address={address} sizeClassName={iconSizeClassName} />
+        <AccountAvatar
+          address={address}
+          sizeClassName={iconSizeClassName}
+          className='shadow rounded-full'
+        />
         <span>
           <AccountName address={address} />
         </span>

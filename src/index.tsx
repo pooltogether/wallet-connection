@@ -22,6 +22,7 @@ export * from './hooks/useIsWalletOnChainId'
 export * from './hooks/useIsWalletConnected'
 export * from './hooks/useUsersAddress'
 export * from './hooks/useWalletChainId'
+export * from './hooks/useIsWalletMetamask'
 
 // Hooks - Transactions
 export * from './hooks/useTransaction'
