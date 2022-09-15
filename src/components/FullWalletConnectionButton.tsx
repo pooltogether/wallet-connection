@@ -90,7 +90,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         <AccountAvatar
           address={address}
           sizeClassName={iconSizeClassName}
-          className='shadow rounded-full'
+          className='shadow rounded-full overflow-hidden'
         />
         <span>
           <AccountName address={address} />
