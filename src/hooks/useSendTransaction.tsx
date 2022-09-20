@@ -91,7 +91,7 @@ export const useSendTransaction = (
                 message={name}
                 chainId={chainId}
                 status={TransactionToastStatus.success}
-                hash={data.transactionHash}
+                hash={data?.transactionHash}
                 t={t}
               />
             )
@@ -105,7 +105,7 @@ export const useSendTransaction = (
                 message={name}
                 chainId={chainId}
                 status={TransactionToastStatus.error}
-                hash={data.transactionHash}
+                hash={data?.transactionHash}
                 t={t}
               />
             )

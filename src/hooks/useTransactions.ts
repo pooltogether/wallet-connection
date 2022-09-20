@@ -1,5 +1,4 @@
 import { useAtom } from 'jotai'
-import { useMemo } from 'react'
 import { transactionsAtom } from '../atoms'
 
 /**
@@ -9,8 +8,5 @@ import { transactionsAtom } from '../atoms'
  */
 export const useTransactions = (ids: string[]) => {
   const [transactions] = useAtom(transactionsAtom)
-  return useMemo(
-    () => transactions.filter((transaction) => ids?.includes(transaction.id)),
-    [transactions, ids]
-  )
+  return transactions.filter((transaction) => ids?.includes(transaction.id))
 }

@@ -53,63 +53,61 @@ const CUSTOM_CHAINS: Chain[] = [
   {
     id: 44787,
     name: 'Celo Alfajores Testnet',
+    network: 'Alfajores',
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
-    // @ts-ignore
     rpcUrls: {
       celohttps: 'https://alfajores-forno.celo-testnet.org',
       default: 'https://alfajores-forno.celo-testnet.org',
       celowss: 'wss://alfajores-forno.celo-testnet.org/ws'
     },
-    // @ts-ignore
     blockExplorers: {
-      blockScout: { name: 'BlockScout', url: 'https://alfajores-blockscout.celo-testnet.org/' }
+      default: { name: 'BlockScout', url: 'https://alfajores-blockscout.celo-testnet.org/' }
     },
     testnet: true
   },
   {
     id: 42220,
     name: 'Celo',
+    network: 'Celo',
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
-    // @ts-ignore
     rpcUrls: { forno: 'https://forno.celo.org', default: 'https://forno.celo.org' },
-    // @ts-ignore
-    blockExplorers: { celo: { name: 'Celo Explorer', url: 'https://explorer.celo.org/' } },
+    blockExplorers: { default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/' } },
     testnet: false
   },
   {
     id: 56,
     name: 'Binance Smart Chain',
+    network: 'BSC',
     nativeCurrency: {
       decimals: 18,
       name: 'Binance Chain Native Token',
       symbol: 'BNB'
     },
-    // @ts-ignore
     rpcUrls: {
       default: 'https://bsc-dataseed.binance.org/',
       bsc1: 'https://bsc-dataseed.binance.org/',
       bsc2: 'https://bsc-dataseed1.defibit.io/',
       bsc3: 'https://bsc-dataseed1.ninicoin.io/'
     },
-    // @ts-ignore
-    blockExplorers: { bscscan: { name: 'Bscscan', url: 'https://bscscan.com' } }
+    blockExplorers: { default: { name: 'Bscscan', url: 'https://bscscan.com' } }
   },
   {
     id: 43114,
     name: 'Avalanche Mainnet',
+    network: 'Avalanche',
     nativeCurrency: {
       name: 'Avalanche',
       symbol: 'AVAX',
       decimals: 18
     },
     rpcUrls: { default: 'https://api.avax.network/ext/bc/C/rpc' },
-    // @ts-ignore
-    blockExplorers: { snowtrace: { name: 'SnowTrace', url: 'https://snowtrace.io' } },
+    blockExplorers: { default: { name: 'SnowTrace', url: 'https://snowtrace.io' } },
     testnet: false
   },
   {
     id: 43113,
     name: 'Avalanche Fuji Testnet',
+    network: 'Fuji',
     nativeCurrency: {
       name: 'Avalanche',
       symbol: 'AVAX',
@@ -118,9 +116,8 @@ const CUSTOM_CHAINS: Chain[] = [
     rpcUrls: {
       default: 'https://api.avax-test.network/ext/bc/C/rpc'
     },
-    // @ts-ignore
     blockExplorers: {
-      snowtrace: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
+      default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
     },
     testnet: true
   }

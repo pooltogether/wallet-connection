@@ -58,10 +58,10 @@ export const updateTransactionsAtom = atom<
   const index = transactions.findIndex((transaction) => transaction.id === id)
   transactions[index] = {
     ...transactions[index],
-    state: state || transactions[index].state,
-    status: status || transactions[index].status,
-    response: response || transactions[index].response,
-    receipt: receipt || transactions[index].receipt
+    state: state || transactions[index]?.state,
+    status: status || transactions[index]?.status,
+    response: response || transactions[index]?.response,
+    receipt: receipt || transactions[index]?.receipt
   }
   set(transactionsAtom, transactions)
 })

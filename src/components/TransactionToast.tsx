@@ -22,7 +22,7 @@ export const TransactionToast: React.FC<{
   const status = getStatus(_status, t)
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col font-averta'>
       <div>{message}</div>
       <div className='flex space-x-1 opacity-80'>
         <div className='text-xxxs'>{status}</div>
