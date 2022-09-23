@@ -31,7 +31,7 @@ export const NetworkSelectionButton: React.FC<NetworkSelectionProps> = (props) =
       >
         <NetworkIcon chainId={chainId} />
         <span
-          className={`hidden xs:block font-bold hover:opacity-70 transition`}
+          className={`hidden sm:block font-bold hover:opacity-70 transition`}
           style={{ color: getChainColorByChainId(chainId) }}
         >
           {getChainNameByChainId(chainId)}

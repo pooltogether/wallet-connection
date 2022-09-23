@@ -1,10 +1,10 @@
 import FeatherIcon from 'feather-icons-react'
 import {
-  SquareButton,
+  Button,
   BottomSheet,
-  SquareButtonTheme,
+  ButtonTheme,
   BlockExplorerLink,
-  SquareButtonSize,
+  ButtonSize,
   ThemedClipSpinner,
   NetworkIcon,
   WalletIcon
@@ -46,7 +46,7 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
         label='account-modal'
         open={isOpen}
         onDismiss={closeModal}
-        maxWidthClassName='max-w-md'
+        maxWidthClassName='xs:max-w-md'
       >
         <div />
       </BottomSheet>
@@ -58,7 +58,7 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
       label='account-modal'
       open={isOpen}
       onDismiss={closeModal}
-      maxWidthClassName='max-w-md'
+      maxWidthClassName='xs:max-w-md'
     >
       <h4 className='mb-2'>Account</h4>
       <div className='grid grid-cols-2'>
@@ -90,9 +90,9 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
           </div>
         </div>
         <div className='flex flex-col justify-end'>
-          <SquareButton
+          <Button
             className='w-32 ml-auto'
-            size={SquareButtonSize.sm}
+            size={ButtonSize.sm}
             onClick={() => {
               try {
                 closeModal()
@@ -102,10 +102,10 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
                 window.location.reload()
               }
             }}
-            theme={SquareButtonTheme.orangeOutline}
+            theme={ButtonTheme.orangeOutline}
           >
             Disconnect
-          </SquareButton>
+          </Button>
         </div>
       </div>
       <hr />

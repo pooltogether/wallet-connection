@@ -129,8 +129,9 @@ export const useSendTransaction = (
 
       callbacks?.refetch?.(id)
     } catch (e) {
-      console.error(e.message)
+      console.error(e, e.message)
       if (e?.message?.match('User denied transaction signature')) {
+        console.log('Here A', id)
         updateTransaction({
           id,
           status: TransactionStatus.cancelled,
@@ -150,6 +151,7 @@ export const useSendTransaction = (
           }
         })
       } else if (e?.error?.message) {
+        console.log('Here B')
         const errorDetails = getErrorDetails(e.error.message)
 
         updateTransaction({
@@ -174,6 +176,7 @@ export const useSendTransaction = (
         })
         log?.(errorMessage)
       } else {
+        console.log('Here C')
         updateTransaction({
           id,
           receipt,

@@ -1,9 +1,4 @@
-import {
-  SquareButton,
-  SquareButtonSize,
-  SquareButtonTheme,
-  ThemedClipSpinner
-} from '@pooltogether/react-components'
+import { Button, ButtonSize, ButtonTheme, ThemedClipSpinner } from '@pooltogether/react-components'
 import React, { useState } from 'react'
 import { useAtom } from 'jotai'
 
@@ -25,7 +20,7 @@ export interface FullWalletConnectionProps {
   iconSizeClassName?: string
   pendingIconSizeClassName?: string
   TosDisclaimer: React.ReactNode
-  theme?: SquareButtonTheme
+  theme?: ButtonTheme
   t?: i18nTranslate
 }
 
@@ -56,14 +51,14 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
 
   let networkButton: React.ReactNode
   let button: React.ReactNode = (
-    <SquareButton
+    <Button
       className={classNames(buttonClassName)}
       onClick={() => setIsWalletConnectionModalOpen(true)}
-      size={SquareButtonSize.sm}
+      size={ButtonSize.sm}
       theme={theme}
     >
       Connect Wallet
-    </SquareButton>
+    </Button>
   )
   if (pendingTransactions?.length > 0) {
     networkButton = <NetworkSelectionButton chains={chains} />
@@ -72,7 +67,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         onClick={() => setIsAccountModalOpen(true)}
         className={classNames(
           buttonClassName,
-          'flex text-pt-teal hover:text-inverse transition-colors font-semibold items-center space-x-2'
+          'flex text-gradient-magenta hover:text-inverse transition-colors font-semibold items-center space-x-2'
         )}
       >
         <ThemedClipSpinner sizeClassName={pendingIconSizeClassName} />
@@ -86,7 +81,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         onClick={() => setIsAccountModalOpen(true)}
         className={classNames(
           buttonClassName,
-          'flex text-pt-teal hover:text-inverse transition-colors font-semibold items-center space-x-2'
+          'flex text-gradient-magenta hover:text-inverse transition-colors font-semibold items-center space-x-2'
         )}
       >
         <AccountAvatar address={account.address} sizeClassName={iconSizeClassName} />
@@ -123,5 +118,5 @@ FullWalletConnectionButton.defaultProps = {
   className: 'flex space-x-4 items-center',
   iconSizeClassName: 'w-5 h-5',
   pendingIconSizeClassName: 'w-4 h-4',
-  theme: SquareButtonTheme.teal
+  theme: ButtonTheme.teal
 }

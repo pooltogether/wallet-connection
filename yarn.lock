@@ -2094,15 +2094,15 @@
   dependencies:
     evm-chains "^0.2.0"
 
-"@pooltogether/hooks@^1.10.0":
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-1.10.0.tgz#bd446ba4ce81b8d17ef4cd76a67eb1b163eefa40"
-  integrity sha512-UKQBZh8FSa1qRyRR/1yVYVvlIBxaT6L7N9xMQuIrbenXDTQexlnzZDHlFVEgCTUQxSaNHXSaoz8PWapXdp17Vw==
+"@pooltogether/hooks@2.0.0-beta.2":
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@pooltogether/hooks/-/hooks-2.0.0-beta.2.tgz#916e6b56bb668c1e0551729712f4e41f225a79e0"
+  integrity sha512-sZYZuuerp4BKKnO1V2vI3vNGHmevwYuAz3Bt/n/O3st6ib7kxKEapQuIJYBnef1F97HYpIAZB7KvsDz5iV8JXQ==
 
-"@pooltogether/react-components@^1.14.0":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-1.14.0.tgz#d8ddb64d775bebbe64f3e0c1ce236d7692bc6f6b"
-  integrity sha512-Ud5r4doeG7EflwA4rNG5dmTt/YL3WMrXNJyIjH5XgS4dp6flIJ/bSw0QzZTMqIWtudQWURf3YVXAD36kgTmRzQ==
+"@pooltogether/react-components@2.0.0-beta.2":
+  version "2.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-2.0.0-beta.2.tgz#d65d254f3fd325b615d06997747031f08f9b5d08"
+  integrity sha512-Xmy3jZ1pkOFciEyWERvGBMMCX/QbbvGH6u75O9Alp2/ln+Xp1+nwYockR7lQWQMzp2GiucB5Bojw/hMs4ahJBA==
   dependencies:
     "@download/blockies" "^1.0.3"
     "@reach/dialog" "^0.15.0"
@@ -4870,10 +4870,10 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-beautiful-react-hooks@^1.0.2:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/beautiful-react-hooks/-/beautiful-react-hooks-1.2.0.tgz#b29ed1a2f8e8de803d9a774c1c1d2c831f2d7100"
-  integrity sha512-Ynsdw4VMg2gR3SGyvZCbDbVGGW7lDReCEwowQhipl7uopdVRWAiZx+dyNALogd+nFrU/8EdqyjXOfiSi078PhA==
+beautiful-react-hooks@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/beautiful-react-hooks/-/beautiful-react-hooks-3.6.2.tgz#8452e7d6c9a286705515022184db791f93ee70b9"
+  integrity sha512-OvUpYCcKhQvKWB6vj03U0Lk7HYHzX2oOh+Di7PI0pds+ou2HWcXj0Ztpu03RZ9lZmtI2mvS/ZU5vkCbRasoAJQ==
   dependencies:
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"

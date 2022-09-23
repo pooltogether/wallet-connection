@@ -10,6 +10,8 @@ export * from './components/AccountModal'
 export * from './components/AccountName'
 export * from './components/FullWalletConnectionButton'
 export * from './components/NetworkSelectionButton'
+export * from './components/NetworkSelectionList'
+export * from './components/NetworkSelectionCurrentlySelected'
 export * from './components/NetworkSelectionModal'
 export * from './components/WalletConnectionList'
 export * from './components/WalletConnectionModal'
@@ -30,6 +32,9 @@ export * from './hooks/useSendSequentialTransactions'
 export * from './hooks/useUsersPendingTransactions'
 export * from './hooks/useUsersTransactions'
 export * from './hooks/useUpdateStoredPendingTransactions'
+
+// Hooks - Utilities
+export * from './hooks/useApproveErc20'
 
 // Hooks - Data
 export * from './hooks/useReadProvider'
