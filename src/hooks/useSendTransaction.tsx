@@ -7,8 +7,8 @@ import { v4 as uuid } from 'uuid'
 import { TransactionState, TransactionStatus } from '../constants'
 import { useUsersAddress } from './useUsersAddress'
 import { useWalletChainId } from './useWalletChainId'
-import { TransactionToast, TransactionToastStatus } from '@pooltogether/react-components'
 import React from 'react'
+import { TransactionToast, TransactionToastStatus } from '../components/TransactionToast'
 
 /**
  * @param log optional error logger
@@ -91,7 +91,7 @@ export const useSendTransaction = (
                 message={name}
                 chainId={chainId}
                 status={TransactionToastStatus.success}
-                hash={data.transactionHash}
+                hash={data?.transactionHash}
                 t={t}
               />
             )
@@ -105,7 +105,7 @@ export const useSendTransaction = (
                 message={name}
                 chainId={chainId}
                 status={TransactionToastStatus.error}
-                hash={data.transactionHash}
+                hash={data?.transactionHash}
                 t={t}
               />
             )
@@ -137,19 +137,15 @@ export const useSendTransaction = (
           status: TransactionStatus.cancelled,
           state: TransactionState.complete
         })
-        toast.error({
-          render() {
-            return (
-              <TransactionToast
-                message={name}
-                chainId={chainId}
-                status={TransactionToastStatus.cancelled}
-                hash={receipt?.transactionHash}
-                t={t}
-              />
-            )
-          }
-        })
+        toast.error(
+          <TransactionToast
+            message={name}
+            chainId={chainId}
+            status={TransactionToastStatus.cancelled}
+            hash={receipt?.transactionHash}
+            t={t}
+          />
+        )
       } else if (e?.error?.message) {
         console.log('Here B')
         const errorDetails = getErrorDetails(e.error.message)
@@ -161,19 +157,15 @@ export const useSendTransaction = (
           state: TransactionState.complete
         })
         const errorMessage = `Transaction failed - ${errorDetails}`
-        toast.error({
-          render() {
-            return (
-              <TransactionToast
-                message={errorMessage}
-                chainId={chainId}
-                status={TransactionToastStatus.cancelled}
-                hash={receipt?.transactionHash}
-                t={t}
-              />
-            )
-          }
-        })
+        toast.error(
+          <TransactionToast
+            message={errorMessage}
+            chainId={chainId}
+            status={TransactionToastStatus.cancelled}
+            hash={receipt?.transactionHash}
+            t={t}
+          />
+        )
         log?.(errorMessage)
       } else {
         console.log('Here C')
@@ -184,19 +176,15 @@ export const useSendTransaction = (
           state: TransactionState.complete
         })
         const errorMessage = `Transaction failed - Unknown error`
-        toast.error({
-          render() {
-            return (
-              <TransactionToast
-                message={errorMessage}
-                chainId={chainId}
-                status={TransactionToastStatus.cancelled}
-                hash={receipt?.transactionHash}
-                t={t}
-              />
-            )
-          }
-        })
+        toast.error(
+          <TransactionToast
+            message={errorMessage}
+            chainId={chainId}
+            status={TransactionToastStatus.cancelled}
+            hash={receipt?.transactionHash}
+            t={t}
+          />
+        )
         log?.(errorMessage)
       }
     }

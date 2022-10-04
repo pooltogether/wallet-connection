@@ -1,6 +1,5 @@
 import React from 'react'
 import { BottomSheet } from '@pooltogether/react-components'
-
 import { Chain } from 'wagmi'
 import { i18nTranslate } from '@pooltogether/react-components/dist/types'
 import { NetworkSelectionList } from './NetworkSelectionList'

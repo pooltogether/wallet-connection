@@ -1,14 +1,6 @@
 import { allChains, Chain } from 'wagmi'
-import { ProviderApiKeys } from './interfaces'
 
-/**
- * Global API keys, initialized through initProviderApiKeys
- */
-export const RPC_API_KEYS: ProviderApiKeys = {
-  alchemy: undefined,
-  etherscan: undefined,
-  infura: undefined
-}
+export const WC_RPC_URLS: { [chainId: number]: string | string[] } = {}
 
 /**
  * Constant for chain ids
@@ -27,36 +19,16 @@ export const CHAIN_ID = Object.freeze({
   'xdai': 100,
   'polygon': 137,
   'matic': 137,
+  'mumbai': 80001,
   'optimism': 10,
-  'optimism-kovan': 69,
+  'optimism-goerli': 420,
   'avalanche': 43114,
   'fuji': 43113,
   'celo': 42220,
   'celo-testnet': 44787,
-  'mumbai': 80001
+  'arbitrum': 42161,
+  'arbitrum-goerli': 421613
 })
-
-/**
- * Chains supported by Alchemy
- */
-export const ALCHEMY_CHAIN_IDS = Object.freeze([
-  // Ethereum
-  1, 3, 4, 5, 42,
-  // Polygon
-  137, 80001,
-  // Optimism
-  10, 69,
-  // Arbitrum
-  42161, 421611
-])
-
-/**
- * Chains supported by Etherscan
- */
-export const ETHERSCAN_CHAIN_IDS = Object.freeze([
-  // Ethereum
-  1, 3, 4, 5, 42
-])
 
 /**
  * Chains supported by Infura
@@ -66,10 +38,12 @@ export const INFURA_CHAIN_IDS = Object.freeze([
   1, 3, 4, 5, 42,
   // Polygon
   137, 80001,
+  // Avalanche
+  // 43114,
   // Optimism
-  10, 69,
+  10, 420,
   // Arbitrum
-  42161, 421611
+  42161, 421613
 ])
 
 /**
@@ -79,62 +53,61 @@ const CUSTOM_CHAINS: Chain[] = [
   {
     id: 44787,
     name: 'Celo Alfajores Testnet',
+    network: 'Alfajores',
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
-    // @ts-ignore
     rpcUrls: {
       celohttps: 'https://alfajores-forno.celo-testnet.org',
+      default: 'https://alfajores-forno.celo-testnet.org',
       celowss: 'wss://alfajores-forno.celo-testnet.org/ws'
     },
-    // @ts-ignore
     blockExplorers: {
-      blockScout: { name: 'BlockScout', url: 'https://alfajores-blockscout.celo-testnet.org/' }
+      default: { name: 'BlockScout', url: 'https://alfajores-blockscout.celo-testnet.org/' }
     },
     testnet: true
   },
   {
     id: 42220,
     name: 'Celo',
+    network: 'Celo',
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
-    // @ts-ignore
-    rpcUrls: { forno: 'https://forno.celo.org' },
-    // @ts-ignore
-    blockExplorers: { celo: { name: 'Celo Explorer', url: 'https://explorer.celo.org/' } },
+    rpcUrls: { forno: 'https://forno.celo.org', default: 'https://forno.celo.org' },
+    blockExplorers: { default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/' } },
     testnet: false
   },
   {
     id: 56,
     name: 'Binance Smart Chain',
+    network: 'BSC',
     nativeCurrency: {
       decimals: 18,
       name: 'Binance Chain Native Token',
       symbol: 'BNB'
     },
-    // @ts-ignore
     rpcUrls: {
+      default: 'https://bsc-dataseed.binance.org/',
       bsc1: 'https://bsc-dataseed.binance.org/',
       bsc2: 'https://bsc-dataseed1.defibit.io/',
       bsc3: 'https://bsc-dataseed1.ninicoin.io/'
     },
-    // @ts-ignore
-    blockExplorers: { bscscan: { name: 'Bscscan', url: 'https://bscscan.com' } }
+    blockExplorers: { default: { name: 'Bscscan', url: 'https://bscscan.com' } }
   },
   {
     id: 43114,
     name: 'Avalanche Mainnet',
+    network: 'Avalanche',
     nativeCurrency: {
       name: 'Avalanche',
       symbol: 'AVAX',
       decimals: 18
     },
-    // @ts-ignore
     rpcUrls: { default: 'https://api.avax.network/ext/bc/C/rpc' },
-    // @ts-ignore
-    blockExplorers: { snowtrace: { name: 'SnowTrace', url: 'https://snowtrace.io' } },
+    blockExplorers: { default: { name: 'SnowTrace', url: 'https://snowtrace.io' } },
     testnet: false
   },
   {
     id: 43113,
     name: 'Avalanche Fuji Testnet',
+    network: 'Fuji',
     nativeCurrency: {
       name: 'Avalanche',
       symbol: 'AVAX',
@@ -143,7 +116,6 @@ const CUSTOM_CHAINS: Chain[] = [
     rpcUrls: {
       default: 'https://api.avax-test.network/ext/bc/C/rpc'
     },
-    // @ts-ignore
     blockExplorers: {
       default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
     },
@@ -167,7 +139,7 @@ const CHAIN_NAME_OVERRIDE: {
 })
 
 /**
- *
+ * In case we want to inject a public RPC URL for a chain into wagmi Chain objects, we can do that here.
  */
 const CHAIN_RPC_OVERRIDES: {
   [chainId: number]: { [key: string]: string }
@@ -195,7 +167,7 @@ const editRpcUrl = (chain: Chain) => {
 }
 
 /**
- *
+ * Returns a list of all chains from wagmi augmented with PT preferred names and RPC URLs.
  */
 export const ALL_CHAINS: Chain[] = [...allChains, ...CUSTOM_CHAINS]
   .map(editChainName)

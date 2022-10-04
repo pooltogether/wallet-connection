@@ -3,43 +3,44 @@ import React, { useState } from 'react'
 import classNames from 'classnames'
 import { Connector, useConnect } from 'wagmi'
 
-export const WalletConnectionList: React.FC<{ className?: string; onWalletConnected: () => void }> =
-  (props) => {
-    const { className, onWalletConnected } = props
-    const { connectors, connect } = useConnect()
-    const [pendingConnector, setPendingConnector] = useState<Connector>()
-    const [errorMessage, setErrorMessage] = useState<string>()
+export const WalletConnectionList = (props: {
+  className?: string
+  onWalletConnected: () => void
+}) => {
+  const { className, onWalletConnected } = props
+  const { connectors, connect } = useConnect()
+  const [pendingConnector, setPendingConnector] = useState<Connector>()
+  const [errorMessage, setErrorMessage] = useState<string>()
 
-    const connectWallet = async (connector: Connector) => {
-      setPendingConnector(connector)
-      try {
-        await connect(connector)
-        onWalletConnected?.()
-      } catch (e) {
-        console.error('Error connecting to wallet', e)
-        setErrorMessage('Error connecting to wallet')
-        return
-      }
-      setPendingConnector(undefined)
+  const connectWallet = async (connector: Connector) => {
+    setPendingConnector(connector)
+    try {
+      connect({ connector })
+      onWalletConnected?.()
+    } catch (e) {
+      console.error('Error connecting to wallet')
+      setErrorMessage('Error connecting to wallet')
+      return
     }
-
-    return (
-      <>
-        <ul className={classNames('space-y-2 mx-auto', className)}>
-          {connectors.map((connector) => (
-            <FullWalletConnectionButton
-              key={connector.id}
-              connector={connector}
-              connectWallet={() => connectWallet(connector)}
-              disabled={!!pendingConnector}
-              pending={pendingConnector === connector}
-            />
-          ))}
-        </ul>
-        {errorMessage && <div className='text-pt-red-light pt-2 text-xxs'>{errorMessage}</div>}
-      </>
-    )
   }
+
+  return (
+    <>
+      <ul className={classNames('space-y-2 mx-auto', className)}>
+        {connectors.map((connector) => (
+          <FullWalletConnectionButton
+            key={connector.id}
+            connector={connector}
+            connectWallet={() => connectWallet(connector)}
+            disabled={!!pendingConnector}
+            pending={pendingConnector === connector}
+          />
+        ))}
+      </ul>
+      {errorMessage && <div className='text-pt-red-light pt-2 text-xxs'>{errorMessage}</div>}
+    </>
+  )
+}
 
 interface FullWalletConnectionButtonProps {
   connector: Connector

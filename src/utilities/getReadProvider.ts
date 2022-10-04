@@ -1,50 +1,24 @@
-import {
-  BaseProvider,
-  AlchemyProvider,
-  InfuraProvider,
-  EtherscanProvider,
-  JsonRpcProvider
-} from '@ethersproject/providers'
-import { ALCHEMY_CHAIN_IDS, CHAIN_ID, ETHERSCAN_CHAIN_IDS, INFURA_CHAIN_IDS } from '../constants'
-import { ProviderApiKeys } from '../interfaces'
-import { getRpcUrl } from './getRpcUrl'
-import { getChain } from './getChain'
+import { BaseProvider, JsonRpcProvider } from '@ethersproject/providers'
+import { getRpcUrls } from './getRpcUrls'
 
 /**
- * Creates a provider for the given chain id if available.
- * Attempts to use API keys for RPC providers first.
- * Falls back to mainnet if chain id provided is not supported.
+ * Creates a new Fallback RPC provider for the given chainId.
+ * Optionally, can be passed an RPC URL to use instead of the public one.
  * @param chainId
- * @param apiKeys
+ * @param _rpcUrl
  * @returns
  */
-export const getReadProvider = (chainId: number, apiKeys?: ProviderApiKeys): BaseProvider => {
-  const alchemyApiKey = apiKeys?.alchemy
-  const infuraApiKey = apiKeys?.infura
-  const etherscanApiKey = apiKeys?.etherscan
-
-  try {
-    if (!!alchemyApiKey && ALCHEMY_CHAIN_IDS.includes(chainId)) {
-      return new AlchemyProvider(chainId, alchemyApiKey)
-    } else if (!!infuraApiKey && INFURA_CHAIN_IDS.includes(chainId)) {
-      return new InfuraProvider(chainId, infuraApiKey)
-    } else if (!!etherscanApiKey && ETHERSCAN_CHAIN_IDS.includes(chainId)) {
-      return new EtherscanProvider(chainId, etherscanApiKey)
-    }
-
-    const chainData = getChain(chainId)
-    if (!!chainData) {
-      const rpcUrl = getRpcUrl(chainId, apiKeys)
-      return new JsonRpcProvider(rpcUrl, chainId)
-    } else {
-      console.warn(`getReadProvider | Chain id ${chainId} not supported.`)
-      const rpcUrl = getRpcUrl(CHAIN_ID.mainnet, apiKeys)
-      return new JsonRpcProvider(rpcUrl, chainId)
-    }
-  } catch (e) {
-    console.error(e)
-    console.warn(`getReadProvider | Chain id ${chainId} not supported.`)
-    const rpcUrl = getRpcUrl(CHAIN_ID.mainnet, apiKeys)
-    return new JsonRpcProvider(rpcUrl, chainId)
-  }
+export const getReadProvider = (chainId: number, _rpcUrl?: string | string[]): BaseProvider => {
+  const rpcUrls = getRpcUrls(chainId, _rpcUrl)
+  if (!rpcUrls || rpcUrls.length === 0) throw new Error(`No RPC URL found for chainId: ${chainId}`)
+  return new JsonRpcProvider(rpcUrls[0], chainId)
+  // TODO: Add fallback provider for other RPC URLs
+  // return new FallbackProvider(
+  //   rpcUrls.map((rpcUrl, index) => ({
+  //     provider: new JsonRpcProvider(rpcUrl, chainId),
+  //     priority: index < 3 ? index + 1 : 3,
+  //     weight: index < 2 ? 5 : 1,
+  //     stallTimeout: 2000
+  //   }))
+  // )
 }

@@ -16,6 +16,7 @@ export const getChainColorByChainId = (chainId: number) => {
       return '#946fdf'
     case CHAIN_ID.optimism:
     case CHAIN_ID['optimism-kovan']:
+    case CHAIN_ID['optimism-goerli']:
       return '#EE000B'
     case CHAIN_ID.avalanche:
     case CHAIN_ID.fuji:

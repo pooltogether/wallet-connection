@@ -1,18 +1,18 @@
 import { getReadProvider } from './getReadProvider'
 import { BaseProvider } from '@ethersproject/providers'
-import { ProviderApiKeys } from '../interfaces'
 
 /**
- * Creates several providers for the given chain ids if available.
- * Attempts to use any initialized api keys for RPC providers first.
+ * Creates a new JSON RPC provider for the given chainIds.
+ * Optionally, can be passed RPC URLs to use instead of the public ones.
  * @param chainIds
- * @returns an object of providers keyed by chain id
+ * @param rpcUrls
+ * @returns
  */
 export const getReadProviders = (
   chainIds: number[],
-  apiKeys?: ProviderApiKeys
+  rpcUrls?: { [chainId: number]: string | string[] }
 ): { [chainId: number]: BaseProvider } =>
   chainIds.reduce((readProviders, chainId) => {
-    readProviders[chainId] = getReadProvider(chainId, apiKeys)
+    readProviders[chainId] = getReadProvider(chainId, rpcUrls?.[chainId])
     return readProviders
   }, {})

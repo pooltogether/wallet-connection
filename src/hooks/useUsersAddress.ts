@@ -7,8 +7,8 @@ import { useAccount } from 'wagmi'
  * @returns the address of the connected wallet
  */
 export const useUsersAddress = () => {
-  const { data } = useAccount()
+  const { address } = useAccount()
   return useMemo(() => {
-    return !!data ? getAddress(data.address) : null
-  }, [data?.address])
+    return !!address ? getAddress(address) : null
+  }, [address])
 }

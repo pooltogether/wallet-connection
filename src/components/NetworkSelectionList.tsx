@@ -1,7 +1,7 @@
 import { ThemedClipSpinner, NetworkIcon } from '@pooltogether/react-components'
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import { Chain, useConnect, useNetwork } from 'wagmi'
+import { Chain, useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 import { useWalletChainId } from '../hooks/useWalletChainId'
 import { getChainNameByChainId } from '../utilities/getChainNameByChainId'
 
@@ -10,11 +10,12 @@ export const NetworkSelectionList: React.FC<{
   onSwitch?: (chainId: number) => void
 }> = (props) => {
   const { chains, onSwitch } = props
-  const { activeChain, switchNetwork: _switchNetwork } = useNetwork()
+  const { connector } = useAccount()
+  const { chain: activeChain } = useNetwork()
+  const { switchNetwork: _switchNetwork } = useSwitchNetwork()
   const walletChainId = useWalletChainId()
   const [switchingToNetwork, setSwitchingToNetwork] = useState<number>()
   const [errorMessage, setErrorMessage] = useState<string>()
-  const { activeConnector } = useConnect()
 
   const switchNetwork = async (chainId: number) => {
     setErrorMessage(undefined)
@@ -31,7 +32,7 @@ export const NetworkSelectionList: React.FC<{
     onSwitch?.(chainId)
   }
 
-  if (!activeConnector) return null
+  if (!connector) return null
   return (
     <>
       <ul className='space-y-2 mx-auto max-w-sm'>

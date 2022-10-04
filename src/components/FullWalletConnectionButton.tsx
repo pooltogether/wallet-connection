@@ -1,10 +1,9 @@
 import { Button, ButtonSize, ButtonTheme, ThemedClipSpinner } from '@pooltogether/react-components'
 import React, { useState } from 'react'
 import { useAtom } from 'jotai'
-
 import { AccountModal } from './AccountModal'
 import classNames from 'classnames'
-import { Chain, useAccount, useConnect } from 'wagmi'
+import { Chain, useAccount } from 'wagmi'
 import { i18nTranslate } from '../interfaces'
 import { useUsersPendingTransactions } from '../hooks/useUsersPendingTransactions'
 import { AccountName } from './AccountName'
@@ -40,14 +39,13 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
     theme,
     TosDisclaimer
   } = props
-  const { data: account } = useAccount()
-  const { activeConnector } = useConnect()
+  const { address, connector, status } = useAccount()
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false)
   const [isWalletConnectionModalOpen, setIsWalletConnectionModalOpen] = useAtom(
     isWalletConnectionModalOpenAtom
   )
-  const pendingTransactions = useUsersPendingTransactions(account?.address)
-  const connected = !!activeConnector
+  const pendingTransactions = useUsersPendingTransactions(address)
+  const connected = !!connector
 
   let networkButton: React.ReactNode
   let button: React.ReactNode = (
@@ -56,8 +54,16 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
       onClick={() => setIsWalletConnectionModalOpen(true)}
       size={ButtonSize.sm}
       theme={theme}
+      disabled={status === 'connecting'}
     >
-      Connect Wallet
+      {status === 'connecting' ? (
+        <>
+          {t?.('connecting') || 'Connecting'}{' '}
+          <ThemedClipSpinner className='opacity-50 ml-2' sizeClassName='w-3 h-3' />
+        </>
+      ) : (
+        t?.('connectWallet') || 'Connect Wallet'
+      )}
     </Button>
   )
   if (pendingTransactions?.length > 0) {
@@ -74,8 +80,8 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
         <span>{`${pendingTransactions.length} pending`}</span>
       </button>
     )
-  } else if (connected && !!account) {
-    networkButton = <NetworkSelectionButton chains={chains} />
+  } else if (connected && !!address) {
+    networkButton = <NetworkSelectionButton chains={chains} sizeClassName={iconSizeClassName} />
     button = (
       <button
         onClick={() => setIsAccountModalOpen(true)}
@@ -84,9 +90,13 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
           'flex text-gradient-magenta hover:text-inverse transition-colors font-semibold items-center space-x-2'
         )}
       >
-        <AccountAvatar address={account.address} sizeClassName={iconSizeClassName} />
+        <AccountAvatar
+          address={address}
+          sizeClassName={iconSizeClassName}
+          className='shadow rounded-full overflow-hidden'
+        />
         <span>
-          <AccountName address={account.address} />
+          <AccountName address={address} />
         </span>
       </button>
     )
@@ -116,7 +126,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
 
 FullWalletConnectionButton.defaultProps = {
   className: 'flex space-x-4 items-center',
-  iconSizeClassName: 'w-5 h-5',
+  iconSizeClassName: 'w-6 h-6',
   pendingIconSizeClassName: 'w-4 h-4',
   theme: ButtonTheme.teal
 }
