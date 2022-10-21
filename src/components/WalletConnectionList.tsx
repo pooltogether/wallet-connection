@@ -62,7 +62,7 @@ const FullWalletConnectionButton: React.FC<FullWalletConnectionButtonProps> = (p
       <button
         onClick={connectWallet}
         className={classNames(
-          'space-x-2 bg-pt-purple-lighter dark:bg-pt-purple-darker rounded-lg p-4 flex items-center w-full transition-colors hover:border-highlight-1',
+          'space-x-2 bg-pt-purple-lightest dark:bg-pt-purple-darkest rounded-lg p-4 flex items-center w-full transition-colors hover:border-highlight-1',
           'border',
           {
             'border-default': pending,

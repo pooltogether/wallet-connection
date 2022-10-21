@@ -1,9 +1,8 @@
-import { Modal } from '@pooltogether/react-components'
-
 import React from 'react'
 import { WalletConnectionList } from './WalletConnectionList'
 import { i18nTranslate } from '../interfaces'
 import classNames from 'classnames'
+import { BottomSheet } from '@pooltogether/react-components'
 
 interface WalletConnectionModalProps {
   isOpen: boolean
@@ -16,17 +15,17 @@ export const WalletConnectionModal: React.FC<WalletConnectionModalProps> = (prop
   const { isOpen, TosDisclaimer, closeModal } = props
 
   return (
-    <Modal
+    <BottomSheet
       label='wallet-connection-modal'
       isOpen={isOpen}
       closeModal={closeModal}
       widthClassName='w-screen xs:w-full'
       maxWidthClassName='xs:max-w-md'
       roundedClassName='rounded-none xs:rounded-xl'
-      title='Connect to a wallet'
+      header='Connect to a wallet'
     >
       <WalletConnectionModalContent TosDisclaimer={TosDisclaimer} onWalletConnected={closeModal} />
-    </Modal>
+    </BottomSheet>
   )
 }
 

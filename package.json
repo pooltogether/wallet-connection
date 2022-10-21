@@ -53,7 +53,7 @@
     "@babel/core": "^7.17.7",
     "@babel/preset-env": "^7.16.4",
     "@pooltogether/etherplex": "^1.1.2",
-    "@pooltogether/react-components": "^2.0.0-beta.8",
+    "@pooltogether/react-components": "^2.0.0-beta.13",
     "@pooltogether/utilities": "^0.6.2",
     "@size-limit/preset-small-lib": "^7.0.8",
     "@storybook/addon-essentials": "^6.4.19",
@@ -94,7 +94,7 @@
   },
   "peerDependencies": {
     "@pooltogether/etherplex": "^1.1.2",
-    "@pooltogether/react-components": "^2.0.0-beta.7",
+    "@pooltogether/react-components": "^2.0.0-beta.13",
     "@pooltogether/utilities": "^0.6.2",
     "beautiful-react-hooks": "^3.6.2",
     "classnames": "^2.3.1",

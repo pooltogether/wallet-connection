@@ -2161,10 +2161,10 @@
     lodash.merge "^4.6.2"
     zen-observable-ts "^0.8.20"
 
-"@pooltogether/react-components@^2.0.0-beta.8":
-  version "2.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-2.0.0-beta.8.tgz#5a721c0d584043cfcefe3bf9e591c4132da04fad"
-  integrity sha512-47rY0sAqcGHE4lTLS5Co9v39XUmc6hy+wojlA7CatUixar7Tpe10RNTIShEnOlgB2PSH30yKOj/WqxSqZdMPDg==
+"@pooltogether/react-components@^2.0.0-beta.13":
+  version "2.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@pooltogether/react-components/-/react-components-2.0.0-beta.13.tgz#7da40f6a6487ab4caf81254b566fe80a8e8df70d"
+  integrity sha512-XxcnNuKjaoTklI0VaN3JdABu2GKfhQGfKhiLXb8F7ZBg/3KbOF0mLTenzuel6EZB+hiQYn30mugqX98xOMPcBw==
   dependencies:
     "@download/blockies" "^1.0.3"
     "@reach/dialog" "^0.15.0"

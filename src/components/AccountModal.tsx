@@ -42,8 +42,8 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
     return (
       <BottomSheet
         label='account-modal'
-        open={isOpen}
-        onDismiss={closeModal}
+        isOpen={isOpen}
+        closeModal={closeModal}
         maxWidthClassName='xs:max-w-md'
       >
         <div />
@@ -54,8 +54,8 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
   return (
     <BottomSheet
       label='account-modal'
-      open={isOpen}
-      onDismiss={closeModal}
+      isOpen={isOpen}
+      closeModal={closeModal}
       maxWidthClassName='xs:max-w-md'
     >
       <h4 className='mb-2'>Account</h4>

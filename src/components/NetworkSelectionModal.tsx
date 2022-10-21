@@ -16,8 +16,8 @@ export const NetworkSelectionModal: React.FC<{
   return (
     <BottomSheet
       label='wallet-connection-modal'
-      open={isOpen}
-      onDismiss={closeModal}
+      isOpen={isOpen}
+      closeModal={closeModal}
       maxWidthClassName='xs:max-w-md'
     >
       <h6 className='text-center uppercase text-sm mb-3'>
