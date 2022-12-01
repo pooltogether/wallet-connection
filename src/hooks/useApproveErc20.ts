@@ -1,7 +1,7 @@
 import { SendTransactionOptions } from '../interfaces'
 import { useSendTransaction } from './useSendTransaction'
 import ERC20 from '../abis/ERC20'
-import { BigNumber, Contract } from 'ethers'
+import { BigNumber, Contract, Overrides } from 'ethers'
 import { MaxUint256 } from '@ethersproject/constants'
 import { useSigner } from 'wagmi'
 
@@ -19,6 +19,9 @@ export const useApproveErc20 = (
   const callTransaction = async () => {
     const { data: signer } = await refetch()
     const erc20 = new Contract(tokenAddress, ERC20, signer)
+    const gasEstimate = await erc20.estimateGas.approve(spenderAddress, amountUnformatted)
+    const overrides: Overrides = !!gasEstimate ? { gasLimit: gasEstimate.mul(12).div(10) } : undefined
+    if (!!overrides) return erc20.approve(spenderAddress, amountUnformatted, overrides)
     return erc20.approve(spenderAddress, amountUnformatted)
   }
 
