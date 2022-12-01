@@ -21,7 +21,8 @@ export const useApproveErc20 = (
     const erc20 = new Contract(tokenAddress, ERC20, signer)
     const gasEstimate = await erc20.estimateGas.approve(spenderAddress, amountUnformatted)
     const overrides: Overrides = !!gasEstimate ? { gasLimit: gasEstimate.mul(12).div(10) } : undefined
-    return erc20.approve(spenderAddress, amountUnformatted, overrides)
+    if (!!overrides) return erc20.approve(spenderAddress, amountUnformatted, overrides)
+    return erc20.approve(spenderAddress, amountUnformatted)
   }
 
   return () =>
