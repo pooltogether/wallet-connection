@@ -27,15 +27,20 @@ export const WalletConnectionList = (props: {
   return (
     <>
       <ul className={classNames('space-y-2 mx-auto', className)}>
-        {connectors.map((connector) => (
-          <FullWalletConnectionButton
-            key={connector.id}
-            connector={connector}
-            connectWallet={() => connectWallet(connector)}
-            disabled={!!pendingConnector}
-            pending={pendingConnector === connector}
-          />
-        ))}
+        {/* Hide the RainbowWallet connector since we can't identify it */}
+        {connectors
+          .filter(
+            (connector) => connector.id !== 'walletConnect' || connector.options.qrcode !== false
+          )
+          .map((connector) => (
+            <FullWalletConnectionButton
+              key={connector.id}
+              connector={connector}
+              connectWallet={() => connectWallet(connector)}
+              disabled={!!pendingConnector}
+              pending={pendingConnector === connector}
+            />
+          ))}
       </ul>
       {errorMessage && <div className='text-pt-red-light pt-2 text-xxs'>{errorMessage}</div>}
     </>

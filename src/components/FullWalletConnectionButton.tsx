@@ -1,6 +1,7 @@
 import { Button, ButtonSize, ButtonTheme, ThemedClipSpinner } from '@pooltogether/react-components'
 import React, { useState } from 'react'
 import { useAtom } from 'jotai'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { AccountModal } from './AccountModal'
 import classNames from 'classnames'
 import { Chain, useAccount } from 'wagmi'
@@ -39,7 +40,7 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
     theme,
     TosDisclaimer
   } = props
-  const { address, connector, status } = useAccount()
+  const { address, connector } = useAccount()
   const [isAccountModalOpen, setIsAccountModalOpen] = useState(false)
   const [isWalletConnectionModalOpen, setIsWalletConnectionModalOpen] = useAtom(
     isWalletConnectionModalOpenAtom
@@ -49,22 +50,33 @@ export const FullWalletConnectionButton: React.FC<FullWalletConnectionProps> = (
 
   let networkButton: React.ReactNode
   let button: React.ReactNode = (
-    <Button
-      className={classNames(buttonClassName)}
-      onClick={() => setIsWalletConnectionModalOpen(true)}
-      size={ButtonSize.sm}
-      theme={theme}
-      disabled={status === 'connecting'}
-    >
-      {status === 'connecting' ? (
-        <>
-          {t?.('connecting') || 'Connecting'}{' '}
-          <ThemedClipSpinner className='opacity-50 ml-2' sizeClassName='w-3 h-3' />
-        </>
-      ) : (
-        t?.('connectWallet') || 'Connect Wallet'
-      )}
-    </Button>
+    <ConnectButton.Custom>
+      {({ openConnectModal, mounted }) => {
+        const ready = mounted
+
+        return (
+          <div
+            {...(!ready && {
+              'aria-hidden': true,
+              'style': {
+                opacity: 0,
+                pointerEvents: 'none',
+                userSelect: 'none'
+              }
+            })}
+          >
+            <Button
+              className={classNames(buttonClassName)}
+              onClick={openConnectModal}
+              size={ButtonSize.sm}
+              theme={theme}
+            >
+              {t?.('connectWallet') || 'Connect Wallet'}
+            </Button>
+          </div>
+        )
+      }}
+    </ConnectButton.Custom>
   )
   if (pendingTransactions?.length > 0) {
     networkButton = <NetworkSelectionButton chains={chains} />

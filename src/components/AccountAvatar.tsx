@@ -11,7 +11,7 @@ export const AccountAvatar: React.FC<{
   chainId?: number
 }> = (props) => {
   const { address, className, sizeClassName, chainId } = props
-  const { data: src } = useEnsAvatar({ addressOrName: address, chainId })
+  const { data: src } = useEnsAvatar({ address, chainId })
 
   if (src) {
     return <img src={src} className={classNames(className, sizeClassName)} />

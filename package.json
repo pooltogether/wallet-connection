@@ -1,11 +1,13 @@
 {
   "name": "@pooltogether/wallet-connection",
-  "description": "PoolTogether wallet connection logic, UI elements and utility hooks for sending and managing transactions.",
-  "version": "1.0.0-beta.4",
-  "license": "MIT",
   "author": "PoolTogether Inc.",
-  "main": "dist/index.js",
+  "description": "PoolTogether wallet connection logic, UI elements and utility hooks for sending and managing transactions.",
+  "version": "1.0.0",
+  "license": "MIT",
   "typings": "dist/index.d.ts",
+  "type": "module",
+  "module": "dist/wallet-connection.esm.js",
+  "exports": "./dist/wallet-connection.esm.js",
   "files": [
     "dist",
     "src"
@@ -19,15 +21,15 @@
     "ethereum"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=16"
   },
   "scripts": {
     "reinstall": "rm -rf ./node_modules && yarn",
-    "start": "tsdx watch --onSuccess \"yalc push\"",
-    "build": "tsdx build",
+    "start": "tsdx watch --format esm --onSuccess \"yalc push\" ",
+    "build": "tsdx build --format esm",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint --fix",
-    "prepare": "tsdx build",
+    "prepare": "tsdx build --format esm",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
@@ -38,7 +40,6 @@
       "pre-commit": "tsdx lint"
     }
   },
-  "module": "dist/wallet-connection.esm.js",
   "size-limit": [
     {
       "path": "dist/wallet-connection.cjs.production.min.js",
@@ -90,7 +91,9 @@
     "tslib": "^2.3.1",
     "typescript": "^4.8.3",
     "uuid": "^8.3.2",
-    "wagmi": "0.6.4"
+    "wagmi": "0.9.0",
+    "@wagmi/chains": "^0.1.13",
+    "@rainbow-me/rainbowkit": "^0.8.1"
   },
   "peerDependencies": {
     "@pooltogether/etherplex": "^1.1.2",
@@ -113,7 +116,9 @@
     "react-toastify": "^8.2.0",
     "tailwindcss": "^2.2.7",
     "uuid": "^8.3.2",
-    "wagmi": "0.6.4"
+    "wagmi": "0.9.0",
+    "@wagmi/chains": "^0.1.13",
+    "@rainbow-me/rainbowkit": "^0.8.1"
   },
   "dependencies": {
     "@download/blockies": "^1.0.3"

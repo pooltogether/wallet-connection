@@ -1,4 +1,39 @@
-import { allChains, Chain } from 'wagmi'
+import { Chain } from 'wagmi'
+import {
+  arbitrum,
+  arbitrumGoerli,
+  avalanche,
+  avalancheFuji,
+  bsc,
+  bscTestnet,
+  crossbell,
+  evmos,
+  evmosTestnet,
+  fantom,
+  fantomTestnet,
+  filecoin,
+  filecoinHyperspace,
+  foundry,
+  gnosis,
+  gnosisChiado,
+  goerli,
+  hardhat,
+  iotex,
+  iotexTestnet,
+  localhost,
+  mainnet,
+  metis,
+  metisGoerli,
+  optimism,
+  optimismGoerli,
+  polygon,
+  polygonMumbai,
+  sepolia,
+  taraxa,
+  taraxaTestnet,
+  zkSync,
+  zkSyncTestnet
+} from '@wagmi/chains'
 
 export const WC_RPC_URLS: { [chainId: number]: string | string[] } = {}
 
@@ -35,15 +70,22 @@ export const CHAIN_ID = Object.freeze({
  */
 export const INFURA_CHAIN_IDS = Object.freeze([
   // Ethereum
-  1, 3, 4, 5, 42,
+  1,
+  3,
+  4,
+  5,
+  42,
   // Polygon
-  137, 80001,
+  137,
+  80001,
   // Avalanche
   // 43114,
   // Optimism
-  10, 420,
+  10,
+  420,
   // Arbitrum
-  42161, 421613
+  42161,
+  421613
 ])
 
 /**
@@ -56,9 +98,10 @@ const CUSTOM_CHAINS: Chain[] = [
     network: 'Alfajores',
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
     rpcUrls: {
-      celohttps: 'https://alfajores-forno.celo-testnet.org',
-      default: 'https://alfajores-forno.celo-testnet.org',
-      celowss: 'wss://alfajores-forno.celo-testnet.org/ws'
+      celohttps: { http: ['https://alfajores-forno.celo-testnet.org'] },
+      default: { http: ['https://alfajores-forno.celo-testnet.org'] },
+      public: { http: ['https://alfajores-forno.celo-testnet.org'] },
+      celowss: { http: ['wss://alfajores-forno.celo-testnet.org/ws'] }
     },
     blockExplorers: {
       default: { name: 'BlockScout', url: 'https://alfajores-blockscout.celo-testnet.org/' }
@@ -70,7 +113,11 @@ const CUSTOM_CHAINS: Chain[] = [
     name: 'Celo',
     network: 'Celo',
     nativeCurrency: { name: 'Celo', symbol: 'CELO', decimals: 18 },
-    rpcUrls: { forno: 'https://forno.celo.org', default: 'https://forno.celo.org' },
+    rpcUrls: {
+      forno: { http: ['https://forno.celo.org'] },
+      default: { http: ['https://forno.celo.org'] },
+      public: { http: ['https://forno.celo.org'] }
+    },
     blockExplorers: { default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/' } },
     testnet: false
   },
@@ -84,10 +131,11 @@ const CUSTOM_CHAINS: Chain[] = [
       symbol: 'BNB'
     },
     rpcUrls: {
-      default: 'https://bsc-dataseed.binance.org/',
-      bsc1: 'https://bsc-dataseed.binance.org/',
-      bsc2: 'https://bsc-dataseed1.defibit.io/',
-      bsc3: 'https://bsc-dataseed1.ninicoin.io/'
+      default: { http: ['https://bsc-dataseed.binance.org/'] },
+      public: { http: ['https://bsc-dataseed.binance.org/'] },
+      bsc1: { http: ['https://bsc-dataseed.binance.org/'] },
+      bsc2: { http: ['https://bsc-dataseed1.defibit.io/'] },
+      bsc3: { http: ['https://bsc-dataseed1.ninicoin.io/'] }
     },
     blockExplorers: { default: { name: 'Bscscan', url: 'https://bscscan.com' } }
   },
@@ -100,7 +148,10 @@ const CUSTOM_CHAINS: Chain[] = [
       symbol: 'AVAX',
       decimals: 18
     },
-    rpcUrls: { default: 'https://api.avax.network/ext/bc/C/rpc' },
+    rpcUrls: {
+      default: { http: ['https://api.avax.network/ext/bc/C/rpc'] },
+      public: { http: ['https://api.avax.network/ext/bc/C/rpc'] }
+    },
     blockExplorers: { default: { name: 'SnowTrace', url: 'https://snowtrace.io' } },
     testnet: false
   },
@@ -114,7 +165,8 @@ const CUSTOM_CHAINS: Chain[] = [
       decimals: 18
     },
     rpcUrls: {
-      default: 'https://api.avax-test.network/ext/bc/C/rpc'
+      default: { http: ['https://api.avax-test.network/ext/bc/C/rpc'] },
+      public: { http: ['https://api.avax-test.network/ext/bc/C/rpc'] }
     },
     blockExplorers: {
       default: { name: 'SnowTrace', url: 'https://testnet.snowtrace.io' }
@@ -169,7 +221,42 @@ const editRpcUrl = (chain: Chain) => {
 /**
  * Returns a list of all chains from wagmi augmented with PT preferred names and RPC URLs.
  */
-export const ALL_CHAINS: Chain[] = [...allChains, ...CUSTOM_CHAINS]
+export const ALL_CHAINS: Chain[] = [
+  arbitrum,
+  arbitrumGoerli,
+  avalanche,
+  avalancheFuji,
+  bsc,
+  bscTestnet,
+  crossbell,
+  evmos,
+  evmosTestnet,
+  fantom,
+  fantomTestnet,
+  filecoin,
+  filecoinHyperspace,
+  foundry,
+  gnosis,
+  gnosisChiado,
+  goerli,
+  hardhat,
+  iotex,
+  iotexTestnet,
+  localhost,
+  mainnet,
+  metis,
+  metisGoerli,
+  optimism,
+  optimismGoerli,
+  polygon,
+  polygonMumbai,
+  sepolia,
+  taraxa,
+  taraxaTestnet,
+  zkSync,
+  zkSyncTestnet,
+  ...CUSTOM_CHAINS
+]
   .map(editChainName)
   .map(editRpcUrl)
 

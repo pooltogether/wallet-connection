@@ -150,6 +150,7 @@ const TransactionStatusIcon: React.FC<{
   transaction: Transaction
 }> = (props) => {
   const { transaction } = props
+  return null
 
   if (transaction.state === TransactionState.pending) {
     return <ThemedClipSpinner sizeClassName='w-4 h-4' />

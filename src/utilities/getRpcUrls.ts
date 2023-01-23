@@ -49,7 +49,7 @@ export const getRpcUrls = (chainId: number, rpcUrl?: string | string[]): string[
 
   // wagmi public RPC URLs
   const publicRpcUrl = getChain(chainId)?.rpcUrls?.default
-  if (!!publicRpcUrl) rpcUrls.push(publicRpcUrl)
+  if (!!publicRpcUrl) rpcUrls.push(publicRpcUrl.http[0])
 
   return rpcUrls
 }
