@@ -3,7 +3,7 @@ import { createTransactionsAtom, updateTransactionsAtom } from '../atoms'
 import { SendTransactionOptions, TransactionCallbacks } from '../interfaces'
 import { TransactionReceipt, TransactionResponse } from '@ethersproject/providers'
 import { toast, ToastContentProps } from 'react-toastify'
-import { v4 as uuid } from 'uuid'
+import v4 from 'uuid/v4.js'
 import { TransactionState, TransactionStatus } from '../constants'
 import { useUsersAddress } from './useUsersAddress'
 import { useWalletChainId } from './useWalletChainId'
@@ -189,7 +189,7 @@ export const useSendTransaction = (
 
   return (options: SendTransactionOptions) => {
     const { name, callTransaction, callbacks } = options
-    const id: string = uuid()
+    const id: string = v4()
     createTransaction({ id, name, chainId, usersAddress })
     sendTransaction(id, name, chainId, callTransaction, callbacks)
     return id
