@@ -1,4 +1,4 @@
-import { useUpdateAtom } from 'jotai/utils'
+import { useSetAtom } from 'jotai'
 import { createTransactionsAtom, updateTransactionsAtom } from '../atoms'
 import { SendTransactionOptions, TransactionCallbacks } from '../interfaces'
 import { TransactionReceipt, TransactionResponse } from '@ethersproject/providers'
@@ -20,8 +20,8 @@ export const useSendTransaction = (
 ) => {
   const usersAddress = useUsersAddress()
   const chainId = useWalletChainId()
-  const createTransaction = useUpdateAtom(createTransactionsAtom)
-  const updateTransaction = useUpdateAtom(updateTransactionsAtom)
+  const createTransaction = useSetAtom(createTransactionsAtom)
+  const updateTransaction = useSetAtom(updateTransactionsAtom)
 
   /**
    * Submits the transaction, updates state and executes callbacks.

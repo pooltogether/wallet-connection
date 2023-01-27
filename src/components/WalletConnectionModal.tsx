@@ -45,7 +45,7 @@ export const WalletConnectionModalContent = (props: {
       />
       <a
         className='text-pt-teal transition hover:opacity-70 underline text-sm'
-        href='https://docs.ethhub.io/using-ethereum/wallets/intro-to-ethereum-wallets/'
+        href='https://ethereum.org/en/wallets/'
         target='_blank'
         rel='noreferrer'
       >

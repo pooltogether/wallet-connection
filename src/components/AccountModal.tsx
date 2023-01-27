@@ -15,7 +15,7 @@ import { getChainNameByChainId } from '../utilities/getChainNameByChainId'
 import { useUsersTransactions } from '../hooks/useUsersTransactions'
 import { TransactionState, TransactionStatus } from '../constants'
 import { AccountAvatar } from './AccountAvatar'
-import { useUpdateAtom } from 'jotai/utils'
+import { useSetAtom } from 'jotai'
 import { transactionsAtom } from '../atoms'
 import { AccountName } from './AccountName'
 import { useWalletChainId } from '../hooks/useWalletChainId'
@@ -36,7 +36,7 @@ export const AccountModal: React.FC<AccountModalProps> = (props) => {
   const chainId = useWalletChainId()
   const transactions = useUsersTransactions(address)
   const filteredTransactions = transactions?.slice(transactions.length - 5).reverse()
-  const setTransactions = useUpdateAtom(transactionsAtom)
+  const setTransactions = useSetAtom(transactionsAtom)
 
   if (!address) {
     return (

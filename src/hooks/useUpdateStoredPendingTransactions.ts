@@ -1,6 +1,5 @@
 import { TransactionReceipt, TransactionResponse } from '@ethersproject/providers'
-import { useAtom } from 'jotai'
-import { useUpdateAtom } from 'jotai/utils'
+import { useAtom, useSetAtom } from 'jotai'
 import { useEffect } from 'react'
 import { deleteTransactionsAtom, transactionsAtom, updateTransactionsAtom } from '../atoms'
 import { TransactionState, TransactionStatus } from '../constants'
@@ -13,8 +12,8 @@ export const useUpdateStoredPendingTransactions = (_rpcUrls?: {
   [chainId: number]: string | string[]
 }) => {
   const [_transactions] = useAtom(transactionsAtom)
-  const updateTransaction = useUpdateAtom(updateTransactionsAtom)
-  const deleteTransaction = useUpdateAtom(deleteTransactionsAtom)
+  const updateTransaction = useSetAtom(updateTransactionsAtom)
+  const deleteTransaction = useSetAtom(deleteTransactionsAtom)
 
   useEffect(() => {
     const pendingTransactions = _transactions.filter(

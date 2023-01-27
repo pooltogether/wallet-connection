@@ -1,4 +1,4 @@
-import { useUpdateAtom } from 'jotai/utils'
+import { useSetAtom } from 'jotai'
 import { isWalletConnectionModalOpenAtom } from '../atoms'
 
 /**
@@ -7,6 +7,6 @@ import { isWalletConnectionModalOpenAtom } from '../atoms'
  * @returns
  */
 export const useConnectWallet = () => {
-  const setIsWalletConnectionModalOpen = useUpdateAtom(isWalletConnectionModalOpenAtom)
+  const setIsWalletConnectionModalOpen = useSetAtom(isWalletConnectionModalOpenAtom)
   return () => setIsWalletConnectionModalOpen(true)
 }
