@@ -6,6 +6,7 @@ import { MaxUint256 } from '@ethersproject/constants'
 import { useSigner } from 'wagmi'
 
 export const useApproveErc20 = (
+  chainId: number,
   tokenAddress: string,
   spenderAddress: string,
   options: Partial<Omit<SendTransactionOptions, 'callTransaction'>> = {},
@@ -14,13 +15,15 @@ export const useApproveErc20 = (
   log?: (message: string) => void
 ) => {
   const sendTx = useSendTransaction(t, log)
-  const { refetch } = useSigner()
+  const { refetch } = useSigner({ chainId })
 
   const callTransaction = async () => {
     const { data: signer } = await refetch()
     const erc20 = new Contract(tokenAddress, ERC20, signer)
     const gasEstimate = await erc20.estimateGas.approve(spenderAddress, amountUnformatted)
-    const overrides: Overrides = !!gasEstimate ? { gasLimit: gasEstimate.mul(12).div(10) } : undefined
+    const overrides: Overrides = !!gasEstimate
+      ? { gasLimit: gasEstimate.mul(12).div(10) }
+      : undefined
     if (!!overrides) return erc20.approve(spenderAddress, amountUnformatted, overrides)
     return erc20.approve(spenderAddress, amountUnformatted)
   }
