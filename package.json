@@ -94,7 +94,7 @@
     "tslib": "^2.3.1",
     "typescript": "^4.8.3",
     "uuid": "^9.0.0",
-    "wagmi": "0.9.0"
+    "wagmi": "0.11.5"
   },
   "peerDependencies": {
     "@pooltogether/etherplex": "^1.1.2",
@@ -119,7 +119,7 @@
     "react-toastify": "^8.2.0",
     "tailwindcss": "^2.2.7",
     "uuid": "^9.0.0",
-    "wagmi": "0.9.0"
+    "wagmi": "0.11.5"
   },
   "dependencies": {
     "@download/blockies": "^1.0.3"

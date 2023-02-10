@@ -7,7 +7,6 @@ import React, { useContext, Suspense } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { CHAIN_ID } from '../src/constants'
 import { getRpcUrls } from '../src/utilities/getRpcUrls'
-import { getRpcUrl } from '../src/utilities/getRpcUrl'
 import { getChain } from '../src/utilities/getChain'
 import { getReadProvider } from '../src/utilities/getReadProvider'
 
@@ -25,7 +24,9 @@ const connectors = ({ chainId }) => {
         chainId: chainId || CHAIN_ID.mainnet,
         rpc: getRpcUrls(chains.map((chain) => chain.id)),
         bridge: 'https://pooltogether.bridge.walletconnect.org/',
-        qrcode: true
+        qrcode: true,
+        version: '2',
+        projectId: '' // TODO
       }
     })
   ]
