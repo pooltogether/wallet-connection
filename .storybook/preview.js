@@ -26,7 +26,7 @@ const connectors = ({ chainId }) => {
         bridge: 'https://pooltogether.bridge.walletconnect.org/',
         qrcode: true,
         version: '2',
-        projectId: '' // TODO
+        projectId: '358b98f0af3cd936fe09dc21064de51d'
       }
     })
   ]
