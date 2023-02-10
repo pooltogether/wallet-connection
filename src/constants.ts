@@ -33,7 +33,7 @@ import {
   taraxaTestnet,
   zkSync,
   zkSyncTestnet
-} from '@wagmi/chains'
+} from 'wagmi/chains'
 
 export const WC_RPC_URLS: { [chainId: number]: string | string[] } = {}
 
