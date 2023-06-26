@@ -27,11 +27,9 @@ export const WalletConnectionList = (props: {
   return (
     <>
       <ul className={classNames('space-y-2 mx-auto', className)}>
-        {/* Hide the RainbowWallet connector since we can't identify it */}
+        {/* Hide the WalletConnect connector since it breaks the flow */}
         {connectors
-          .filter(
-            (connector) => connector.id !== 'walletConnect' || connector.options.qrcode !== false
-          )
+          .filter((connector) => connector.id !== 'walletConnect')
           .map((connector) => (
             <FullWalletConnectionButton
               key={connector.id}
